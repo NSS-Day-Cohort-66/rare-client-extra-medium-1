@@ -17,7 +17,7 @@ export const Login = ({ setToken }) => {
     }
 
     loginUser(user).then(res => {
-      if ("valid" in res && res.valid) {
+      if ("token" in res && res.token) {
         setToken(res.token)
         navigate("/")
       }
