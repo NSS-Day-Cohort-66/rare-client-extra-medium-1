@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import { getMyPosts } from "../services/postService";
 import "./pages.css";
+import { getAllPosts } from "../services/postServices";
 
 export const MyPosts = ({ setToken, token }) => {
   const [myPosts, setMyPosts] = useState([]);
 
   const getAndSetMyPosts = () => {
-    getMyPosts().then((postsArray) => {
-      const sortedArray = postsArray.sort((a, b) => {
+    getAllPosts().then((postsArray) => {
+      const filteredArray = postsArray.filter((post) => post.is_owner === true);
+      const sortedArray = filteredArray.sort((a, b) => {
         return new Date(b.publication_date) - new Date(a.publication_date);
       });
       setMyPosts(sortedArray);
