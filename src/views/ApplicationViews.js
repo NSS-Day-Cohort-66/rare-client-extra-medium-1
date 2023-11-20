@@ -4,6 +4,7 @@ import { Register } from "../components/auth/Register"
 import { Authorized } from "./Authorized"
 import { Home } from "../pages/Home"
 import { CategoryList } from "../pages/CategoryList"
+import { TagList } from "../pages/TagList"
 
 
 export const ApplicationViews = ({ token, setToken }) => {
@@ -15,6 +16,7 @@ export const ApplicationViews = ({ token, setToken }) => {
         {/* Add Routes here */}
         <Route path="/" element={<Home setToken={setToken} />}  />
         <Route path="/categories" element={<CategoryList token={token} setToken={setToken} />}  />
+        <Route path="/tags" element={<TagList token={token} setToken={setToken} />}  />
       </Route>
     </Routes>
   </>
