@@ -5,6 +5,7 @@ import { Authorized } from "./Authorized";
 import { Home } from "../pages/Home";
 import { CategoryList } from "../pages/CategoryList";
 import { PostList } from "../pages/PostList";
+import { MyPosts } from "../pages/MyPosts";
 import { TagList } from "../pages/TagList";
 import { CategoryForm } from "../components/forms/CategoryForm";
 
@@ -24,6 +25,10 @@ export const ApplicationViews = ({ token, setToken }) => {
           <Route
             path="/postLists"
             element={<PostList token={token} setToken={setToken} />}
+          />
+          <Route
+            path="/myPosts"
+            element={<MyPosts token={token} setToken={setToken} />}
           />
           <Route
             path="/tags"
