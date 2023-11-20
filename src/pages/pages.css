@@ -1,17 +1,28 @@
-.h1{
-    font-weight: 500;
-    font-size: xx-large;
-    margin: 2rem;
+.h1 {
+  font-weight: 500;
+  font-size: xx-large;
+  margin: 2rem;
 }
 
 .card-item {
-    border: 2px black solid;
-    background-color: rgb(188, 237, 237);
-    width: 50%;
-    margin: 20px auto;
-    /* margin-left: 20%; */
-    padding: 1rem;
-    text-align: center;
-    font-weight: bold;
+  border: 2px black solid;
+  background-color: rgb(188, 237, 237);
+  width: 50%;
+  margin: 20px auto;
+  /* margin-left: 20%; */
+  padding: 1rem;
+  text-align: center;
+  font-weight: bold;
 }
 
+.post-item {
+  display: flex;
+  flex-direction: column;
+  border: 2px black solid;
+  background-color: rgb(188, 237, 237);
+  width: 50%;
+  margin: 20px auto;
+  padding: 1rem;
+  text-align: center;
+  font-weight: bold;
+}
