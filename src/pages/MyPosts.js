@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getMyPosts } from "../services/postService";
+import "./pages.css";
 
 export const MyPosts = ({ setToken, token }) => {
   const [myPosts, setMyPosts] = useState([]);
@@ -19,22 +20,36 @@ export const MyPosts = ({ setToken, token }) => {
 
   return (
     <>
-      <div>
-        <h1>Here are my posts!</h1>
-      </div>
+      <div className="h1">Here are my Posts!</div>
 
       <div className="content">
         {myPosts && myPosts.length ? (
           myPosts.map((post) => (
             <div key={post.id}>
-              <div>
-                <h4>{post.title}</h4>
-                <h4>Publication Date: {post.publication_date}</h4>
-                <img src={post.image_url} alt={post.title} width="400px"></img>
-                <h4>{post.content}</h4>
-                <h4>Author: {post.rare_user.user.username}</h4>
-                <h4>Reaction Count: {post.tags.length}</h4>
-                <h4>Category: {post.category.label}</h4>
+              <div className="post-item">
+                <div className="top-post">
+                  <h4 className="post-title">{post.title}</h4>
+                  <h4 className="post-date">
+                    Publication Date: {post.publication_date}
+                  </h4>
+                </div>
+                <div className="middle_post">
+                  <img
+                    src={post.image_url}
+                    alt={post.title}
+                    width="400px"
+                  ></img>
+                  <h4>Category: {post.category.label}</h4>
+                  <h4>{post.content}</h4>
+                </div>
+                <div className="bottom_post">
+                  <h4 className="post-author">
+                    Author: {post.rare_user.user.username}
+                  </h4>
+                  <h4 className="post-reactions">
+                    Reaction Count: {post.tags.length}
+                  </h4>
+                </div>
               </div>
             </div>
           ))

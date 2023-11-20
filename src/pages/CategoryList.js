@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getCategories } from "../services/categoryServices";
-import "./pages.css"
+import "./pages.css";
 
 export const CategoryList = ({ setToken, token }) => {
   const [categories, setCategories] = useState([]);
@@ -17,9 +17,7 @@ export const CategoryList = ({ setToken, token }) => {
 
   return (
     <>
-      <div className="h1">
-        Here are the Categories!
-      </div>
+      <div className="h1">Here are the Categories!</div>
 
       <div className="content">
         {categories && categories.length ? (

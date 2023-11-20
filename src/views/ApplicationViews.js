@@ -5,6 +5,7 @@ import { Authorized } from "./Authorized";
 import { Home } from "../pages/Home";
 import { CategoryList } from "../pages/CategoryList";
 import { MyPosts } from "../pages/MyPosts";
+import { TagList } from "../pages/TagList";
 
 export const ApplicationViews = ({ token, setToken }) => {
   return (
@@ -22,6 +23,10 @@ export const ApplicationViews = ({ token, setToken }) => {
           <Route
             path="/categories"
             element={<CategoryList token={token} setToken={setToken} />}
+          />
+          <Route
+            path="/tags"
+            element={<TagList token={token} setToken={setToken} />}
           />
         </Route>
       </Routes>
