@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getCategories } from "../services/categoryServices";
+import "./pages.css"
 
 export const CategoryList = ({ setToken, token }) => {
   const [categories, setCategories] = useState([]);
@@ -16,19 +17,24 @@ export const CategoryList = ({ setToken, token }) => {
 
   return (
     <>
-      <div>
-        <h1>Here are the Categories!</h1>
+      <div className="h1">
+        Here are the Categories!
       </div>
 
       <div className="content">
         {categories && categories.length ? (
-          categories.map((category) => (
-            <div key={category.id}>
-              <div>
-                <h4>{category.label}</h4>
+          categories
+            .slice() // Create a copy of the array to avoid modifying the original
+            .sort((a, b) => a.label.localeCompare(b.label)) // Sort alphabetically
+            .map((category) => (
+              <div key={category.id}>
+                <div className="categories">
+                  <h3>{category.label}</h3>
+                  <button>Edit</button>
+                  <button>Delete</button>
+                </div>
               </div>
-            </div>
-          ))
+            ))
         ) : (
           <p>No categories found.</p>
         )}
