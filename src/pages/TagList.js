@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { getTags } from "../services/tagServices";
+import { useNavigate } from "react-router-dom";
 
 export const TagList = ({ setToken, token }) => {
   const [tags, setTags] = useState([]);
   const [sortedTags, setSortedTags] = useState([])
+
+  let navigate = useNavigate();
 
   const getAndSetTags = () => {
     getTags().then((categoriesArray) => {
@@ -40,6 +43,9 @@ export const TagList = ({ setToken, token }) => {
         ) : (
           <p>No Tags found.</p>
         )}
+      </div>
+      <div>
+        <button onClick={ () => navigate("/create-tag")}>ADD NEW TAG</button>
       </div>
     </>
   );
