@@ -1,0 +1,17 @@
+.h1{
+    font-weight: 500;
+    font-size: xx-large;
+    margin: 2rem;
+}
+
+.categories {
+    border: 2px black solid;
+    background-color: rgb(199, 242, 242);
+    max-width: 50%;
+    margin: .5rem;
+    margin-left: 20%;
+    padding-top: 1rem;
+    text-align: center;
+    align-self: center;
+    font-weight: bold;
+}
