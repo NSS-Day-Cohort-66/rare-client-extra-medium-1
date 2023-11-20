@@ -8,6 +8,7 @@ import { PostList } from "../pages/PostList";
 import { MyPosts } from "../pages/MyPosts";
 import { TagList } from "../pages/TagList";
 import { CategoryForm } from "../components/forms/CategoryForm";
+import { TagForm } from "../components/forms/TagForm"
 
 export const ApplicationViews = ({ token, setToken }) => {
   return (
@@ -38,7 +39,8 @@ export const ApplicationViews = ({ token, setToken }) => {
             path="/create-category"
             element={<CategoryForm token={token} setToken={setToken} />}
           />
-        </Route>
+          <Route path="/create-tag" element={<TagForm token={token} setToken={setToken} />} />
+      </Route>
       </Routes>
     </>
   );
