@@ -52,7 +52,7 @@ export const NavBar = ({ token, setToken }) => {
                 Posts
               </Link>
               <Link to="/myposts" className="navbar-item">
-                My posts
+                My Posts
               </Link>
               <Link to="/categories" className="navbar-item">
                 Category Manager

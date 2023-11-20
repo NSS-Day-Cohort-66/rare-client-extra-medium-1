@@ -1,57 +1,47 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { getMyPosts } from "../services/postService";
 
-export const MyPosts = () => {
-  useEffect(() => {
-    fetchRocks(showAll);
-  }, [showAll]);
+export const MyPosts = ({ setToken, token }) => {
+  const [myPosts, setMyPosts] = useState([]);
 
-  const displayRocks = () => {
-    if (rocks && rocks.length) {
-      return rocks.map((rock) => (
-        <div
-          key={`key-${rock.id}`}
-          className="border p-5 border-solid hover:bg-fuchsia-500 hover:text-violet-50 rounded-md border-violet-900 mt-5 bg-slate-50"
-        >
-          {rock.name} ({rock.type.label})
-          <div>
-            In the collection of {rock.user?.first_name} {rock.user?.last_name}
-          </div>
-          {showAll ? (
-            ""
-          ) : (
-            <div>
-              <button
-                onClick={async () => {
-                  const response = await fetch(
-                    `http://localhost:8000/rocks/${rock.id}`,
-                    {
-                      method: "DELETE",
-                      headers: {
-                        Authorization: `Token ${
-                          JSON.parse(localStorage.getItem("rock_token")).token
-                        }`,
-                      },
-                    }
-                  );
-                  if (response.status === 204) {
-                    fetchRocks(showAll);
-                  }
-                }}
-                className="border border-solid bg-red-700 text-white p-1"
-              >
-                Delete
-              </button>
-            </div>
-          )}
-        </div>
-      ));
-    }
-    return <h3>Loading Rocks...</h3>;
+  const getAndSetMyPosts = () => {
+    getMyPosts().then((postsArray) => {
+      const sortedArray = postsArray.sort((a, b) => {
+        return new Date(b.publication_date) - new Date(a.publication_date);
+      });
+      setMyPosts(sortedArray);
+    });
   };
+
+  useEffect(() => {
+    getAndSetMyPosts();
+  }, []);
+
   return (
     <>
-      <h1 className="text-3xl">Rock List</h1>
-      {displayRocks()}
+      <div>
+        <h1>Here are my posts!</h1>
+      </div>
+
+      <div className="content">
+        {myPosts && myPosts.length ? (
+          myPosts.map((post) => (
+            <div key={post.id}>
+              <div>
+                <h4>{post.title}</h4>
+                <h4>Publication Date: {post.publication_date}</h4>
+                <img src={post.image_url} alt={post.title} width="400px"></img>
+                <h4>{post.content}</h4>
+                <h4>Author: {post.rare_user.user.username}</h4>
+                <h4>Reaction Count: {post.tags.length}</h4>
+                <h4>Category: {post.category.label}</h4>
+              </div>
+            </div>
+          ))
+        ) : (
+          <p>No posts found.</p>
+        )}
+      </div>
     </>
   );
 };
