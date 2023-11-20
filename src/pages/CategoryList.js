@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { getCategories } from "../services/categoryServices";
 import "./pages.css";
+import { useNavigate } from "react-router-dom";
 
 export const CategoryList = ({ setToken, token }) => {
   const [categories, setCategories] = useState([]);
+
+  let navigate = useNavigate();
 
   const getAndSetCategories = () => {
     getCategories().then((categoriesArray) => {
@@ -36,6 +39,11 @@ export const CategoryList = ({ setToken, token }) => {
         ) : (
           <p>No categories found.</p>
         )}
+      </div>
+      <div>
+        <button onClick={() => navigate("/create-category")}>
+          ADD NEW CATEGORY
+        </button>
       </div>
     </>
   );

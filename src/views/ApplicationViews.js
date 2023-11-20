@@ -6,6 +6,7 @@ import { Home } from "../pages/Home";
 import { CategoryList } from "../pages/CategoryList";
 import { MyPosts } from "../pages/MyPosts";
 import { TagList } from "../pages/TagList";
+import { CategoryForm } from "../components/forms/CategoryForm";
 
 export const ApplicationViews = ({ token, setToken }) => {
   return (
@@ -17,16 +18,16 @@ export const ApplicationViews = ({ token, setToken }) => {
           {/* Add Routes here */}
           <Route path="/" element={<Home setToken={setToken} />} />
           <Route
-            path="/myposts"
-            element={<MyPosts token={token} setToken={setToken} />}
-          />
-          <Route
             path="/categories"
             element={<CategoryList token={token} setToken={setToken} />}
           />
           <Route
             path="/tags"
             element={<TagList token={token} setToken={setToken} />}
+          />
+          <Route
+            path="/create-category"
+            element={<CategoryForm token={token} setToken={setToken} />}
           />
         </Route>
       </Routes>
