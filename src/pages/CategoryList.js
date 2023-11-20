@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { getCategories } from "../services/categoryServices";
 import "./pages.css"
+import { useNavigate } from "react-router-dom";
 
 export const CategoryList = ({ setToken, token }) => {
   const [categories, setCategories] = useState([]);
+  
+  let navigate = useNavigate();
 
   const getAndSetCategories = () => {
     getCategories().then((categoriesArray) => {
@@ -27,8 +30,8 @@ export const CategoryList = ({ setToken, token }) => {
             .slice() // Create a copy of the array to avoid modifying the original
             .sort((a, b) => a.label.localeCompare(b.label)) // Sort alphabetically
             .map((category) => (
-              <div key={category.id}>
-                <div className="categories">
+              <div className="card-item" key={category.id}>
+                <div>
                   <h3>{category.label}</h3>
                   <button>Edit</button>
                   <button>Delete</button>
@@ -38,6 +41,9 @@ export const CategoryList = ({ setToken, token }) => {
         ) : (
           <p>No categories found.</p>
         )}
+      </div>
+      <div>
+        <button onClick={ () => navigate("/create-category")}>ADD NEW CATEGORY</button>
       </div>
     </>
   );
