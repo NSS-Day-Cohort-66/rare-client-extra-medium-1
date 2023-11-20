@@ -3,6 +3,7 @@ import { Login } from "../components/auth/Login"
 import { Register } from "../components/auth/Register"
 import { Authorized } from "./Authorized"
 import { Home } from "../pages/Home"
+import { CategoryList } from "../pages/CategoryList"
 
 
 export const ApplicationViews = ({ token, setToken }) => {
@@ -13,6 +14,7 @@ export const ApplicationViews = ({ token, setToken }) => {
       <Route element={<Authorized token={token} />}>
         {/* Add Routes here */}
         <Route path="/" element={<Home setToken={setToken} />}  />
+        <Route path="/categories" element={<CategoryList token={token} setToken={setToken} />}  />
       </Route>
     </Routes>
   </>
