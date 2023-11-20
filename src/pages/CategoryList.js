@@ -27,8 +27,8 @@ export const CategoryList = ({ setToken, token }) => {
             .slice() // Create a copy of the array to avoid modifying the original
             .sort((a, b) => a.label.localeCompare(b.label)) // Sort alphabetically
             .map((category) => (
-              <div key={category.id}>
-                <div className="categories">
+              <div className="card-item" key={category.id}>
+                <div>
                   <h3>{category.label}</h3>
                   <button>Edit</button>
                   <button>Delete</button>

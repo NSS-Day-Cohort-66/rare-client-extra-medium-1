@@ -4,14 +4,14 @@
     margin: 2rem;
 }
 
-.categories {
+.card-item {
     border: 2px black solid;
-    background-color: rgb(199, 242, 242);
-    max-width: 50%;
-    margin: .5rem;
-    margin-left: 20%;
-    padding-top: 1rem;
+    background-color: rgb(188, 237, 237);
+    width: 50%;
+    margin: 20px auto;
+    /* margin-left: 20%; */
+    padding: 1rem;
     text-align: center;
-    align-self: center;
     font-weight: bold;
 }
+

@@ -22,16 +22,18 @@ export const TagList = ({ setToken, token }) => {
 
   return (
     <>
-      <div>
-        <h1>Here are the Categories!</h1>
+      <div className="h1">
+        Here are the Tags!
       </div>
 
       <div className="content">
         {sortedTags && sortedTags.length ? (
           sortedTags.map((tag) => (
-            <div key={tag.id}>
+            <div className="card-item" key={tag.id}>
               <div>
-                <h4>{tag.label}</h4>
+                <h3>{tag.label}</h3>
+                <button>Edit</button>
+                <button>Delete</button>
               </div>
             </div>
           ))
