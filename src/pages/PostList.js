@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import { getAllPosts } from "../services/postServices";
+import { Link } from "react-router-dom";
 
 export const PostList = ({ setToken, token }) => {
   const [posts, setPosts] = useState({});
 
   const getAndSetPosts = () => {
     getAllPosts().then((postsArray) => {
-      // Filter posts with a publication date in the past
+     
       const filteredPosts = postsArray.filter(
         (post) => new Date(post.publication_date) < new Date()
       );
 
-      // Sort the filtered posts by publication date in descending order
       const sortedPosts = filteredPosts.sort(
         (a, b) => new Date(b.publication_date) - new Date(a.publication_date)
       );
@@ -19,22 +19,22 @@ export const PostList = ({ setToken, token }) => {
       setPosts(sortedPosts);
     });
   };
-  
+
   useEffect(() => {
     getAndSetPosts();
   }, []);
 
   return (
     <>
-      <div>
-        <h1>Here are the Posts!</h1>
+      <div className="h1">
+        Here are the Posts!
       </div>
 
-      <div className="content">
+      <div>
         {posts && posts.length ? (
           posts.map((post) => (
-            <div key={post.id}>
-              <div>
+            <div className="card-item" key={post.id}>
+              <Link to={`/PostDetail/${post.id}`}>
                 <h4>
                   Title: {post.title}
                   <br />
@@ -42,7 +42,7 @@ export const PostList = ({ setToken, token }) => {
                   <br />
                   Category: {post.category.label}
                 </h4>
-              </div>
+              </Link>
             </div>
           ))
         ) : (
