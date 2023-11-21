@@ -1,15 +1,22 @@
-import { Route, Routes } from "react-router-dom";
-import { Login } from "../components/auth/Login";
-import { Register } from "../components/auth/Register";
-import { Authorized } from "./Authorized";
-import { Home } from "../pages/Home";
-import { CategoryList } from "../pages/CategoryList";
-import { PostList } from "../pages/PostList";
+import { Route, Routes } from "react-router-dom"
+import { Login } from "../components/auth/Login"
+import { Register } from "../components/auth/Register"
+import { Authorized } from "./Authorized"
+import { Home } from "../pages/Home"
+import { CategoryList } from "../pages/CategoryList"
+import { PostList } from "../pages/PostList"
+import { TagList } from "../pages/TagList"
+import { CategoryForm } from "../components/forms/CategoryForm"
+import { PostDetail } from "../pages/PostDetail"
 import { MyPosts } from "../pages/MyPosts";
+<<<<<<< HEAD
 import { TagList } from "../pages/TagList";
 import { CategoryForm } from "../components/forms/CategoryForm";
 import { TagForm } from "../components/forms/TagForm"
 import { PostForm } from "../components/forms/PostForm";
+=======
+import {TagForm} from "../components/forms/TagForm"
+>>>>>>> main
 
 export const ApplicationViews = ({ token, setToken }) => {
   return (
@@ -28,6 +35,7 @@ export const ApplicationViews = ({ token, setToken }) => {
             path="/postLists"
             element={<PostList token={token} setToken={setToken} />}
           />
+        <Route path="/postLists/:postId" element={<PostDetail token={token} setToken={setToken} />} />
           <Route
             path="/create-post"
             element={<PostForm token={token} setToken={setToken} />}
