@@ -9,14 +9,10 @@ import { TagList } from "../pages/TagList"
 import { CategoryForm } from "../components/forms/CategoryForm"
 import { PostDetail } from "../pages/PostDetail"
 import { MyPosts } from "../pages/MyPosts";
-<<<<<<< HEAD
 import { TagList } from "../pages/TagList";
 import { CategoryForm } from "../components/forms/CategoryForm";
 import { TagForm } from "../components/forms/TagForm"
 import { PostForm } from "../components/forms/PostForm";
-=======
-import {TagForm} from "../components/forms/TagForm"
->>>>>>> main
 
 export const ApplicationViews = ({ token, setToken }) => {
   return (
