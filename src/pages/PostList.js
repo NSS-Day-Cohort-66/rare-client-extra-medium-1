@@ -34,7 +34,7 @@ export const PostList = ({ setToken, token }) => {
         {posts && posts.length ? (
           posts.map((post) => (
             <div className="card-item" key={post.id}>
-              <Link to={`/PostDetail/${post.id}`}>
+              <Link to={`/postLists/${post.id}`}>
                 <h4>
                   Title: {post.title}
                   <br />

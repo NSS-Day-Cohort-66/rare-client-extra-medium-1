@@ -9,6 +9,7 @@ import { TagList } from "../pages/TagList"
 import { CategoryForm } from "../components/forms/CategoryForm"
 import { PostDetail } from "../pages/PostDetail"
 import { MyPosts } from "../pages/MyPosts";
+import {TagForm} from "../components/forms/TagForm"
 
 export const ApplicationViews = ({ token, setToken }) => {
   return (
@@ -27,7 +28,7 @@ export const ApplicationViews = ({ token, setToken }) => {
             path="/postLists"
             element={<PostList token={token} setToken={setToken} />}
           />
-        <Route path="postLists/:postId" element={<PostDetail token={token} setToken={setToken} />} />
+        <Route path="/postLists/:postId" element={<PostDetail token={token} setToken={setToken} />} />
           <Route
             path="/myPosts"
             element={<MyPosts token={token} setToken={setToken} />}
