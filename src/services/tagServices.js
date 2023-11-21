@@ -20,3 +20,4 @@ export const getTags = () => {
             body: JSON.stringify(category)
         }).then((res) => res.json())
     }
+
