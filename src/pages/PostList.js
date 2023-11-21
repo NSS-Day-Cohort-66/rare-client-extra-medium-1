@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { getAllPosts } from "../services/postServices";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const PostList = ({ setToken, token }) => {
   const [posts, setPosts] = useState({});
+
+  const navigate = useNavigate()
 
   const getAndSetPosts = () => {
     getAllPosts().then((postsArray) => {
@@ -48,6 +50,7 @@ export const PostList = ({ setToken, token }) => {
         ) : (
           <p>No posts found.</p>
         )}
+        <button onClick={ () => navigate("/create-post")}>NEW POST</button>
       </div>
     </>
   );
