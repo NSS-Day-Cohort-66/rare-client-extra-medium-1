@@ -26,3 +26,45 @@
   text-align: center;
   font-weight: bold;
 }
+
+.tag-container {
+  display: flex;
+  width: 1000px;
+  justify-content: space-around;
+  margin: auto;
+  padding: 20px;
+}
+
+.save-tag-btn {
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.save-tag-btn:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.btn-div {
+  display: flex;
+  margin: auto;
+  justify-content: center
+}
+
+.tag-div{
+  display: flex;
+  width: auto;
+  justify-content: center;
+}
+
+.tag-label {
+  margin: 0px 10px;
+}

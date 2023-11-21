@@ -43,6 +43,12 @@ export const PostList = ({ setToken, token }) => {
                   Author: {post.rare_user.user.username}
                   <br />
                   Category: {post.category.label}
+                  <br />
+                  Tags: <div className="tag-div">
+                    {post.tags.map(tag => 
+                    <div className="tag-label">{tag.label}</div>
+                  )}
+                    </div>
                 </h4>
               </Link>
             </div>
