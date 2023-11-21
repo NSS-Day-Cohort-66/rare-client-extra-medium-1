@@ -1,18 +1,24 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createPost } from "../../services/postService";
 import { getCategories } from "../../services/categoryServices";
 import { getTags } from "../../services/tagServices";
 
 
 export const PostForm = () => {
   const [categoryLabel, setCategoryLabel] = useState([])
+  const [chosenTags, updateChosen] = useState(new Set())
   const [tagLabels, setTagLabels] = useState([])
   const [post, setPost] = useState({
+    rare_user: 1,
     title: "",
     image_url: "",
     content: "",
+    publication_date: new Date(),
+    approved: true,
+    category: 0
   });
+
+
 
   let navigate = useNavigate();
 
@@ -32,19 +38,48 @@ export const PostForm = () => {
     setPost(copy);
   };
 
-  const handleSave = (evt) => {
-    evt.preventDefault();
-
-    const newPost = {
-      title: post.title,
-      image_url: post.image_url,
-      content: post.content,
-    };
-
-    createPost(newPost).then(() => {
-      navigate("/posts");
-    });
+  const updateCategory = (e) => {
+    const copy = { ...post };
+    copy.category = e.target.value;
+    setPost(copy);
   };
+
+  const handleTagChosen = (c) => {
+    const copy = new Set(chosenTags)
+    copy.has(c.id) ? copy.delete(c.id) : copy.add(c.id)
+    updateChosen(copy)
+  }
+
+  const postPost = async (evt) => {
+    evt.preventDefault()
+
+    // Retrieve the token from localStorage
+    const authToken = localStorage.getItem("auth_token")
+    debugger
+    // Check if the token is present
+    if (!authToken) {
+      console.error("Rock token not found in localStorage")
+      return
+    }
+
+    try {
+      // Send a POST request to create a new book
+      const response = await fetch("http://localhost:8000/posts", {
+        method: "POST",
+        headers: {
+          "Authorization": `Token ${localStorage.getItem("auth_token")}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ ...post, tags: Array.from(chosenTags) })
+      })
+
+      const res = response.json()
+      // Navigate to the /books route after successful book creation
+      navigate(`/postLists`)
+    } catch (error) {
+      console.error("Error posting book:", error)
+    }
+  }
 
   return (
     <main className="post-form-parent">
@@ -89,9 +124,9 @@ export const PostForm = () => {
                 <div>Category:</div>
                 <select
                 className="input"
-                  name="category_id"
-                  onChange={updatePost}
-                  value={post.category_id}
+                  name="category"
+                  onChange={updateCategory}
+                  value={post.category}
                 >
                   <option value={0}>Please select a Category</option>
                   {categoryLabel.map((typeObj) => {
@@ -104,32 +139,27 @@ export const PostForm = () => {
                 </select>
               </div>
             </fieldset>
-            {/* <fieldset>
-              <div className="box-input">
-                <div>Tags:</div>
-                <select
-                className="input"
-                  name="foodPriceId"
-                  onChange={handleInputChange}
-                  value={newPost.foodPriceId}
-                >
-                  <option value={0}>Please select a food price</option>
-                  {tagLabels.map((priceObj) => {
-                    return (
-                      <option key={priceObj.id} value={priceObj.id}>
-                        {priceObj.price}
-                      </option>
-                    )
-                  })}
-                </select>
-              </div> */}
-            <div>
-              <button className="save-button" onClick={handleSave}>
-                submit
-              </button>
-            </div>
-          </fieldset>
+            <fieldset>
+              <div className="form-group">
+                <div>Season:</div>
+                {/* Map through categories and render checkboxes */}
+                {tagLabels.map((c) => (
+                  <div key={c.id}>
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={chosenTags.has(c.id)}
+                        onChange={() => handleTagChosen(c)}
+                      />
+                      {c.label}
+                    </label>
+                  </div>
+                ))}
+              </div>
+            </fieldset>
+        </fieldset>
         </div>
+        <button onClick={postPost}>Add Post</button>
       </form>
     </main>
   );
