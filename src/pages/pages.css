@@ -29,8 +29,8 @@
 
 .tag-container {
   display: flex;
-  width: 500px;
-  justify-content: space-between;
+  width: 1000px;
+  justify-content: space-around;
   margin: auto;
   padding: 20px;
 }
@@ -57,4 +57,14 @@
   display: flex;
   margin: auto;
   justify-content: center
+}
+
+.tag-div{
+  display: flex;
+  width: auto;
+  justify-content: center;
+}
+
+.tag-label {
+  margin: 0px 10px;
 }
