@@ -26,3 +26,35 @@
   text-align: center;
   font-weight: bold;
 }
+
+.tag-container {
+  display: flex;
+  width: 500px;
+  justify-content: space-between;
+  margin: auto;
+  padding: 20px;
+}
+
+.save-tag-btn {
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.save-tag-btn:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.btn-div {
+  display: flex;
+  margin: auto;
+  justify-content: center
+}
