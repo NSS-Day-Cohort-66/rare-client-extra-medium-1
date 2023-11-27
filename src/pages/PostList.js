@@ -5,11 +5,10 @@ import { Link, useNavigate } from "react-router-dom";
 export const PostList = ({ setToken, token }) => {
   const [posts, setPosts] = useState({});
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const getAndSetPosts = () => {
     getAllPosts().then((postsArray) => {
-     
       const filteredPosts = postsArray.filter(
         (post) => new Date(post.publication_date) < new Date()
       );
@@ -28,9 +27,7 @@ export const PostList = ({ setToken, token }) => {
 
   return (
     <>
-      <div className="h1">
-        Here are the Posts!
-      </div>
+      <div className="h1">Here are the Posts!</div>
 
       <div>
         {posts && posts.length ? (
@@ -44,11 +41,14 @@ export const PostList = ({ setToken, token }) => {
                   <br />
                   Category: {post.category.label}
                   <br />
-                  Tags: <div className="tag-div">
-                    {post.tags.map(tag => 
-                    <div className="tag-label">{tag.label}</div>
-                  )}
-                    </div>
+                  Tags:{" "}
+                  <div className="tag-div">
+                    {post.tags.map((tag) => (
+                      <div className="tag-label" key={tag.id}>
+                        {tag.label}
+                      </div>
+                    ))}
+                  </div>
                 </h4>
               </Link>
             </div>
@@ -56,7 +56,7 @@ export const PostList = ({ setToken, token }) => {
         ) : (
           <p>No posts found.</p>
         )}
-        <button onClick={ () => navigate("/create-post")}>NEW POST</button>
+        <button onClick={() => navigate("/create-post")}>NEW POST</button>
       </div>
     </>
   );
