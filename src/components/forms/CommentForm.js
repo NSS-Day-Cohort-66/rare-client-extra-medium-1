@@ -2,9 +2,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createComments } from "../../services/commentService";
 
-export const CommentForm = () => {
+export const CommentForm = ({ postId }) => {
   const [comment, setComment] = useState({
+    post: postId,
     content: "",
+    created_on: new Date(),
   });
 
   let navigate = useNavigate();
@@ -20,7 +22,9 @@ export const CommentForm = () => {
     evt.preventDefault();
 
     const newComment = {
+      post: comment.post,
       content: comment.content,
+      created_on: comment.created_on,
     };
     createComments(newComment).then(() => {
       navigate("/comments");

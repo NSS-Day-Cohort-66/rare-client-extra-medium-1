@@ -88,8 +88,8 @@ export const PostDetail = () => {
           Save Tag Selection
         </button>
       </div>
-      <div className="btn-div">
-        <button onClick={() => navigate("/create-comment")}>
+      <div className="btn-div" key={postId}>
+        <button onClick={() => navigate(`/create-comment/${postId}`)}>
           Add New Comment
         </button>
       </div>

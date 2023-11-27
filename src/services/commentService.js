@@ -9,7 +9,7 @@ export const getComments = () => {
 };
 
 export const createComments = (comment) => {
-  return fetch(`http://localhost:8000/categories`, {
+  return fetch(`http://localhost:8000/comments`, {
     method: "POST",
     headers: {
       Authorization: `Token ${localStorage.getItem("auth_token")}`,

@@ -35,7 +35,7 @@ export const ApplicationViews = ({ token, setToken }) => {
             element={<PostDetail token={token} setToken={setToken} />}
           />
           <Route
-            path="/create-comment"
+            path="/create-comment/:postId"
             element={<CommentForm token={token} setToken={setToken} />}
           />
           <Route
