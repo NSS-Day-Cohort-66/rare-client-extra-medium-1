@@ -70,6 +70,7 @@ export const PostDetail = () => {
           <p>No post found.</p>
           )}
     </div>
+    {}
     <div className="tag-container">
       {tags 
       ? tags.map(tag => 
