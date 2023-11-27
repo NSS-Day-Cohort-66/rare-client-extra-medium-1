@@ -9,7 +9,6 @@ export const PostForm = () => {
   const [chosenTags, updateChosen] = useState(new Set())
   const [tagLabels, setTagLabels] = useState([])
   const [post, setPost] = useState({
-    rare_user: 1,
     title: "",
     image_url: "",
     content: "",
@@ -51,35 +50,44 @@ export const PostForm = () => {
   }
 
   const postPost = async (evt) => {
-    evt.preventDefault()
-
+    evt.preventDefault();
+  
     // Retrieve the token from localStorage
-    const authToken = localStorage.getItem("auth_token")
-    debugger
+    const authToken = localStorage.getItem("auth_token");
+  
     // Check if the token is present
     if (!authToken) {
-      console.error("Rock token not found in localStorage")
-      return
+      console.error("Rock token not found in localStorage");
+      return;
     }
-
+  
     try {
-      // Send a POST request to create a new book
+      // Send a POST request to create a new post
       const response = await fetch("http://localhost:8000/posts", {
         method: "POST",
         headers: {
-          "Authorization": `Token ${localStorage.getItem("auth_token")}`,
-          "Content-Type": "application/json"
+          Authorization: `Token ${localStorage.getItem("auth_token")}`,
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ ...post, tags: Array.from(chosenTags) })
-      })
-
-      const res = response.json()
-      // Navigate to the /books route after successful book creation
-      navigate(`/postLists`)
+        body: JSON.stringify({ ...post, tags: Array.from(chosenTags) }),
+      });
+  
+      if (!response.ok) {
+        console.error("Error posting post:", response.statusText);
+        return;
+      }
+  
+      // Parse the response to get the newly created post's ID
+      const createdPost = await response.json();
+      const postId = createdPost.id;
+  
+      // Navigate to the detail page of the created post
+      navigate(`/postLists/${postId}`);
     } catch (error) {
-      console.error("Error posting book:", error)
+      console.error("Error posting post:", error);
     }
-  }
+  };
+  
 
   return (
     <main className="post-form-parent">
@@ -141,7 +149,7 @@ export const PostForm = () => {
             </fieldset>
             <fieldset>
               <div className="form-group">
-                <div>Season:</div>
+                <div>Tag:</div>
                 {/* Map through categories and render checkboxes */}
                 {tagLabels.map((c) => (
                   <div key={c.id}>
