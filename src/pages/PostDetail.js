@@ -63,6 +63,8 @@ export const PostDetail = () => {
                   Author: {post.rare_user.user.username}
                   <br />
                   Category: {post.category.label}
+                  <br />
+                  Tags: {post.tags.map(tag => <li>{tag.label}</li>)}
                 </h4>
             </div>
         
@@ -70,7 +72,7 @@ export const PostDetail = () => {
           <p>No post found.</p>
           )}
     </div>
-    {}
+      {post?.is_owner ? <button>Manage Tags</button> : ""}
     <div className="tag-container">
       {tags 
       ? tags.map(tag => 
@@ -82,8 +84,8 @@ export const PostDetail = () => {
         </div>)
       : "No tags found"  
       }
-
     </div>
+
     <div className="btn-div">
       <button className="save-tag-btn" onClick={saveNewTags}>Save Tag Selection</button>
     </div>
