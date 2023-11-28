@@ -23,13 +23,15 @@ export const CategoryList = ({ setToken, token }) => {
   }
 
   const handleDelete = (categoryId) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this category?")
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this category?"
+    );
     if (confirmDelete) {
       deleteCategory(categoryId).then(() => {
-      getAndSetCategories();
-      })
+        getAndSetCategories();
+      });
     }
-  }
+  };
 
   return (
     <>
