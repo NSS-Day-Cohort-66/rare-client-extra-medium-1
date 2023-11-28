@@ -9,7 +9,18 @@ export const getTags = () => {
       }).then((res) => res.json())
   }
 
-  export const createTag = (category) => {
+  export const getTagsByID = (tagId) => {
+      return fetch(`http://localhost:8000/tags/${tagId}`,
+      {
+          method: "GET",
+          headers: {
+              Authorization: `Token ${localStorage.getItem("auth_token")}`,
+              "Content-Type": "application/json"
+          }
+          }).then((res) => res.json())
+  }
+
+  export const createTag = (tag) => {
     return fetch(`http://localhost:8000/tags`,
     {
         method: "POST",
@@ -17,7 +28,18 @@ export const getTags = () => {
             Authorization: `Token ${localStorage.getItem("auth_token")}`,
             "Content-Type": "application/json"
         },
-            body: JSON.stringify(category)
+            body: JSON.stringify(tag)
         }).then((res) => res.json())
     }
 
+  export const editTag = (tag) => {
+    return fetch(`http://localhost:8000/tags/${tag.id}`,
+    {
+        method: "PUT",
+        headers: {
+            Authorization: `Token ${localStorage.getItem("auth_token")}`,
+            "Content-Type": "application/json"
+        },
+            body: JSON.stringify(tag)
+        })
+    }
