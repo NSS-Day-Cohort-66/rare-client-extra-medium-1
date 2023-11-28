@@ -18,6 +18,10 @@ export const CategoryList = ({ setToken, token }) => {
     getAndSetCategories();
   }, []);
 
+  const handleUpdate = (categoryId) => {
+    navigate(`/categories/${categoryId}/edit`);
+  }
+
   const handleDelete = (categoryId) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this category?"
@@ -42,10 +46,8 @@ export const CategoryList = ({ setToken, token }) => {
               <div className="card-item" key={category.id}>
                 <div>
                   <h3>{category.label}</h3>
-                  <button>Edit</button>
-                  <button onClick={() => handleDelete(category.id)}>
-                    Delete
-                  </button>
+                  <button onClick={() => handleUpdate(category.id)}>Edit</button>
+                  <button onClick={() => handleDelete(category.id)}>Delete</button>
                 </div>
               </div>
             ))
