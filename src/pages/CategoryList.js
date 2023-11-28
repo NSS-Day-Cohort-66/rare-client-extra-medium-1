@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { deleteCategory, getCategories } from "../services/categoryServices.js";
 import "./pages.css";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const CategoryList = ({ setToken, token }) => {
   const [categories, setCategories] = useState([]);
@@ -18,15 +18,16 @@ export const CategoryList = ({ setToken, token }) => {
     getAndSetCategories();
   }, []);
 
-
   const handleDelete = (categoryId) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this category?")
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this category?"
+    );
     if (confirmDelete) {
       deleteCategory(categoryId).then(() => {
-      getAndSetCategories();
-      })
+        getAndSetCategories();
+      });
     }
-  }
+  };
 
   return (
     <>
@@ -42,7 +43,9 @@ export const CategoryList = ({ setToken, token }) => {
                 <div>
                   <h3>{category.label}</h3>
                   <button>Edit</button>
-                  <button onClick={() => handleDelete(category.id)}>Delete</button>
+                  <button onClick={() => handleDelete(category.id)}>
+                    Delete
+                  </button>
                 </div>
               </div>
             ))

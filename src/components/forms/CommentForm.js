@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { createComments } from "../../services/commentService";
 
-export const CommentForm = ({ postId }) => {
+export const CommentForm = () => {
+  const { postId } = useParams();
   const [comment, setComment] = useState({
-    post: 4,
+    post: postId,
     content: "",
     created_on: new Date(),
   });
@@ -26,7 +27,7 @@ export const CommentForm = ({ postId }) => {
       created_on: comment.created_on,
     };
     createComments(newComment).then(() => {
-      navigate(`/commentList/${postId}`);
+      navigate(`/postList/${comment.post}/commentList`);
     });
   };
 
