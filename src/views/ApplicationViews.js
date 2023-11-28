@@ -11,6 +11,7 @@ import { PostDetail } from "../pages/PostDetail"
 import { MyPosts } from "../pages/MyPosts";
 import { TagForm } from "../components/forms/TagForm"
 import { PostForm } from "../components/forms/PostForm";
+import { EditTagForm } from "../components/forms/EditTagForm"
 
 export const ApplicationViews = ({ token, setToken }) => {
   return (
@@ -47,6 +48,7 @@ export const ApplicationViews = ({ token, setToken }) => {
             element={<CategoryForm token={token} setToken={setToken} />}
           />
           <Route path="/create-tag" element={<TagForm token={token} setToken={setToken} />} />
+          <Route path="/edit-tag/:tagId" element={<EditTagForm token={token} setToken={setToken} />} />
       </Route>
       </Routes>
     </>
