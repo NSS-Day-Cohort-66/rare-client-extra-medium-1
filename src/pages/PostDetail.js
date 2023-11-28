@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getPostById } from "../services/postServices";
 import { getTags } from "../services/tagServices";
@@ -9,6 +9,11 @@ export const PostDetail = () => {
   const [tags, setTags] = useState([]);
   const [selectedTags, setSelectedTags] = useState(new Set());
   const navigate = useNavigate();
+  const manageTags = useRef();
+
+  useEffect(() => {
+    getTags().then((tagsArray) => setTags(tagsArray));
+  }, []);
 
   useEffect(() => {
     getPostById(postId).then((post) => {
@@ -17,9 +22,7 @@ export const PostDetail = () => {
         setSelectedTags(new Set(post.tags.map((tag) => tag.id)));
       }
     });
-
-    getTags().then((tagsArray) => setTags(tagsArray));
-  }, [postId]);
+  }, [postId, tags]);
 
   const handleSelectedTag = (tag) => {
     const copy = new Set(selectedTags);
@@ -49,7 +52,21 @@ export const PostDetail = () => {
       },
       body: JSON.stringify(updatedPost),
     });
-    navigate(-1);
+    getTags().then((tagsArray) => setTags(tagsArray));
+    manageTags.current.close();
+    // navigate(0)
+  };
+
+  const handleManageTags = () => {
+    if (manageTags.current) {
+      manageTags.current.showModal();
+    }
+  };
+
+  const handleCloseTags = () => {
+    if (manageTags.current) {
+      manageTags.current.close();
+    }
   };
 
   return (
@@ -63,36 +80,51 @@ export const PostDetail = () => {
               Author: {post.rare_user.user.username}
               <br />
               Category: {post.category.label}
+              <br />
+              Tags:{" "}
+              {post.tags.map((tag) => (
+                <li>{tag.label}</li>
+              ))}
             </h4>
           </div>
         ) : (
           <p>No post found.</p>
         )}
       </div>
-      <div className="tag-container" key={tags.id}>
-        {tags
-          ? tags.map((tag) => (
-              <div>
-                <input
-                  type="checkbox"
-                  checked={selectedTags.has(tag.id)}
-                  onChange={() => handleSelectedTag(tag)}
-                />
-                {tag.label}
-              </div>
-            ))
-          : "No tags found"}
-      </div>
-      <div className="btn-div">
-        <button className="save-tag-btn" onClick={saveNewTags}>
-          Save Tag Selection
-        </button>
-      </div>
-      <div className="btn-div" key={postId}>
-        <button onClick={() => navigate(`/create-comment/${postId}`)}>
-          Add New Comment
-        </button>
-      </div>
+      {post?.is_owner ? (
+        <div className="manage-tags-div">
+          <button className="manage-tags-button" onClick={handleManageTags}>
+            Manage Tags
+          </button>
+        </div>
+      ) : (
+        ""
+      )}
+      <dialog className="manage-tags" ref={manageTags}>
+        <div className="tag-container">
+          {tags
+            ? tags.map((tag) => (
+                <div>
+                  <input
+                    type="checkbox"
+                    checked={selectedTags.has(tag.id)}
+                    onChange={() => handleSelectedTag(tag)}
+                  />
+                  {tag.label}
+                </div>
+              ))
+            : "No tags found"}
+        </div>
+
+        <div className="btn-div">
+          <button className="save-tag-btn" onClick={saveNewTags}>
+            Save Tag Selection
+          </button>
+          <button className="save-tag-btn" onClick={handleCloseTags}>
+            Close
+          </button>
+        </div>
+      </dialog>
     </>
   );
 };
