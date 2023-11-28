@@ -1,11 +1,19 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./pages.css";
 import { getComments } from "../services/commentService";
+import { getPostByPostId } from "../services/postServices";
 
 export const CommentList = ({ setToken, token }) => {
   const { postId } = useParams();
   const [comments, setComments] = useState([]);
+  const [post, setPost] = useState({});
+
+  useEffect(() => {
+    getPostByPostId(postId).then((data) => {
+      setPost(data);
+    });
+  }, [postId]);
 
   useEffect(() => {
     getComments().then((data) => {
@@ -21,13 +29,21 @@ export const CommentList = ({ setToken, token }) => {
   }, [postId]);
   return (
     <>
-      <div className="h1">Here are the Comments!</div>
+      <Link
+        style={{ textDecoration: "none", color: "rgb(79, 17, 146)" }}
+        post={post}
+        key={post.id}
+        to={`/postLists/${post.id}`}
+      >
+        <div className="h1">{post.title}</div>
+      </Link>
       <div className="content">
         {comments.map((comment) => {
           return (
             <div className="card-item" key={comment.id}>
               <div>
                 <h3>{comment.content}</h3>
+                <h3>{comment.author?.rare_user?.user?.username}</h3>
                 <h3>{comment.created_on}</h3>
               </div>
             </div>
