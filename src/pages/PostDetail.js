@@ -125,6 +125,11 @@ export const PostDetail = () => {
           </button>
         </div>
       </dialog>
+      <div className="btn-div" key={postId}>
+        <button onClick={() => navigate(`/create-comment/${postId}`)}>
+          Add New Comment
+        </button>
+      </div>
     </>
   );
 };

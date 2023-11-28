@@ -9,16 +9,12 @@ export const CommentList = ({ setToken, token }) => {
 
   useEffect(() => {
     getComments().then((data) => {
-      console.log("postId:", postId); // Log the postId
-      console.log("data:", data); // Log the fetched data
       const filteredComments = data.filter(
-        (comment) => comment.post.id === postId
+        (comment) => comment.post.id === parseInt(postId)
       );
-      console.log("filteredComments:", filteredComments);
       setComments(filteredComments);
     });
   }, [postId]);
-
   return (
     <>
       <div className="h1">Here are the Comments!</div>
@@ -28,6 +24,7 @@ export const CommentList = ({ setToken, token }) => {
             <div className="card-item" key={comment.id}>
               <div>
                 <h3>{comment.content}</h3>
+                <h3>{comment.created_on}</h3>
               </div>
             </div>
           );
