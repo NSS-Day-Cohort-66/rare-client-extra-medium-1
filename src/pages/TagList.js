@@ -28,7 +28,7 @@ export const TagList = ({ setToken, token }) => {
       <div className="h1">
         Here are the Tags!
       </div>
-
+      <button className="btn-div" onClick={ () => navigate("/create-tag")}>ADD NEW TAG</button>
       <div className="content">
         {sortedTags && sortedTags.length ? (
           sortedTags.map((tag) => (
@@ -43,9 +43,6 @@ export const TagList = ({ setToken, token }) => {
         ) : (
           <p>No Tags found.</p>
         )}
-      </div>
-      <div>
-        <button onClick={ () => navigate("/create-tag")}>ADD NEW TAG</button>
       </div>
     </>
   );

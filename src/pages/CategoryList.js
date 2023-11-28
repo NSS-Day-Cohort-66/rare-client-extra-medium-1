@@ -32,7 +32,7 @@ export const CategoryList = ({ setToken, token }) => {
   return (
     <>
       <div className="h1">Here are the Categories!</div>
-
+      <button className="btn-div" onClick={() => navigate("/create-category")}>ADD NEW CATEGORY</button>
       <div className="content">
         {categories && categories.length ? (
           categories
@@ -52,11 +52,6 @@ export const CategoryList = ({ setToken, token }) => {
         ) : (
           <p>No categories found.</p>
         )}
-      </div>
-      <div>
-        <button onClick={() => navigate("/create-category")}>
-          ADD NEW CATEGORY
-        </button>
       </div>
     </>
   );

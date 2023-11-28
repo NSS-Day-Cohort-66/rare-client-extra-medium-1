@@ -28,7 +28,9 @@ export const PostList = ({ setToken, token }) => {
   return (
     <>
       <div className="h1">Here are the Posts!</div>
-
+      <button className="btn-div" onClick={() => navigate("/create-post")}>
+        NEW POST
+      </button>
       <div>
         {posts && posts.length ? (
           posts.map((post) => (
@@ -56,7 +58,6 @@ export const PostList = ({ setToken, token }) => {
         ) : (
           <p>No posts found.</p>
         )}
-        <button onClick={() => navigate("/create-post")}>NEW POST</button>
       </div>
     </>
   );
