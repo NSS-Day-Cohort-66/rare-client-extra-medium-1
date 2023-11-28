@@ -51,6 +51,9 @@ export const EditTagForm = () => {
               <button className="save-button" onClick={handleEditSave}>
                 Save Edit
               </button>
+              <button className="edit-button" onClick={() => navigate("/tags")}>
+                Cancel
+              </button>
             </div>
           </fieldset>
         </div>
