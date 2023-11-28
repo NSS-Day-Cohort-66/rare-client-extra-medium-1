@@ -19,4 +19,19 @@ export const getPostById = (id) => {
   }).then((res) => res.json());
 };
 
+export const deletePost = (postId) => {
+  return fetch(`http://localhost:8000/posts/${postId}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Token ${localStorage.getItem("auth_token")}`,
+      "Content-Type": "application/json",
+    },
+  }).then((res) => {
+    if (!res.ok) {
+      throw new Error(`Failed to delete post with ID ${postId}`);
+    }
+    return res.json();
+  });
+};
+
   
