@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getPostById } from "../services/postServices";
 import { getTags } from "../services/tagServices";
@@ -9,6 +9,11 @@ export const PostDetail = () => {
   const [tags, setTags] = useState([]);
   const [selectedTags, setSelectedTags] = useState(new Set())
   const navigate = useNavigate()
+  const manageTags = useRef()
+
+  useEffect(() => {
+    getTags().then((tagsArray) => setTags(tagsArray));
+  }, [])
 
   useEffect(() => {
     getPostById(postId).then((post) => {
@@ -18,8 +23,8 @@ export const PostDetail = () => {
       }
     });
   
-    getTags().then((tagsArray) => setTags(tagsArray));
-  }, [postId]);
+    
+  }, [postId, tags]);
 
   const handleSelectedTag = (tag) => {
     const copy = new Set(selectedTags)
@@ -49,8 +54,22 @@ export const PostDetail = () => {
       },
       body: JSON.stringify(updatedPost)
     })
-    navigate(-1)
+    getTags().then((tagsArray) => setTags(tagsArray));
+    manageTags.current.close();
+    // navigate(0)
   }
+
+  const handleManageTags = () => {
+    if (manageTags.current) {
+      manageTags.current.showModal();
+    }
+  }
+
+  const handleCloseTags = () => {
+    if (manageTags.current) {
+      manageTags.current.close();
+    }
+  };
 
   return (
     <>
@@ -63,6 +82,8 @@ export const PostDetail = () => {
                   Author: {post.rare_user.user.username}
                   <br />
                   Category: {post.category.label}
+                  <br />
+                  Tags: {post.tags.map(tag => <li>{tag.label}</li>)}
                 </h4>
             </div>
         
@@ -70,6 +91,9 @@ export const PostDetail = () => {
           <p>No post found.</p>
           )}
     </div>
+      {post?.is_owner ? <div className="manage-tags-div"><button className="manage-tags-button" onClick={handleManageTags}>Manage Tags</button></div>: ""}
+    <dialog className="manage-tags" ref={manageTags}>
+
     <div className="tag-container">
       {tags 
       ? tags.map(tag => 
@@ -77,15 +101,17 @@ export const PostDetail = () => {
           <input type="checkbox"
             checked={selectedTags.has(tag.id)}
             onChange={() => (handleSelectedTag(tag))}
-          />{tag.label}
+            />{tag.label}
         </div>)
       : "No tags found"  
-      }
-
+    }
     </div>
+
     <div className="btn-div">
       <button className="save-tag-btn" onClick={saveNewTags}>Save Tag Selection</button>
+      <button className="save-tag-btn" onClick={handleCloseTags}>Close</button>
     </div>
+    </dialog>
   </>
   );
 }
