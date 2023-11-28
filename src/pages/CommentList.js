@@ -1,17 +1,17 @@
 import { useParams } from "react-router-dom";
-import { getCommentsByPostId } from "../services/commentService";
 import { useEffect, useState } from "react";
 import "./pages.css";
+import { getComments } from "../services/commentService";
 
 export const CommentList = ({ setToken, token }) => {
-  const { postId } = useParams();
+  //   const { postId } = useParams();
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
-    getCommentsByPostId(postId).then((data) => {
+    getComments().then((data) => {
       setComments(data);
     });
-  }, [postId]);
+  }, []);
 
   return (
     <>
