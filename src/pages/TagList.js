@@ -35,7 +35,7 @@ export const TagList = ({ setToken, token }) => {
             <div className="card-item" key={tag.id}>
               <div>
                 <h3>{tag.label}</h3>
-                <button>Edit</button>
+                <button onClick={() => navigate(`/edit-tag/${tag.id}`)}>Edit</button>
                 <button>Delete</button>
               </div>
             </div>
