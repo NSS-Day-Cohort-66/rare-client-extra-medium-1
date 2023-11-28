@@ -125,7 +125,12 @@ export const PostDetail = () => {
           </button>
         </div>
       </dialog>
-      <div className="btn-div" key={postId}>
+      <div className="btn-div" key={`viewComments${postId}`}>
+        <button onClick={() => navigate(`/postList/${postId}/commentList`)}>
+          View Comments
+        </button>
+      </div>
+      <div className="btn-div" key={`addComment${postId}`}>
         <button onClick={() => navigate(`/create-comment/${postId}`)}>
           Add New Comment
         </button>

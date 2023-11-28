@@ -9,8 +9,12 @@ export const CommentList = ({ setToken, token }) => {
 
   useEffect(() => {
     getComments().then((data) => {
-      const filteredComments = data.filter(
-        (comment) => comment.post.id === parseInt(postId)
+      const filteredComments = [
+        ...data.filter((comment) => comment.post.id === parseInt(postId)),
+      ];
+      filteredComments.sort(
+        (a, b) =>
+          new Date(b.comment?.created_on) - new Date(a.comment?.created_on)
       );
       setComments(filteredComments);
     });
