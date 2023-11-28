@@ -4,7 +4,7 @@ import { createComments } from "../../services/commentService";
 
 export const CommentForm = ({ postId }) => {
   const [comment, setComment] = useState({
-    post: postId,
+    post: 4,
     content: "",
     created_on: new Date(),
   });
@@ -14,7 +14,6 @@ export const CommentForm = ({ postId }) => {
   const updateComment = (e) => {
     const copy = { ...comment };
     copy[e.target.id] = e.target.value;
-
     setComment(copy);
   };
 
@@ -27,7 +26,7 @@ export const CommentForm = ({ postId }) => {
       created_on: comment.created_on,
     };
     createComments(newComment).then(() => {
-      navigate("/comments");
+      navigate(`/commentList/${postId}`);
     });
   };
 

@@ -12,6 +12,7 @@ import { MyPosts } from "../pages/MyPosts";
 import { TagForm } from "../components/forms/TagForm";
 import { PostForm } from "../components/forms/PostForm";
 import { CommentForm } from "../components/forms/CommentForm";
+import { CommentList } from "../pages/CommentList";
 
 export const ApplicationViews = ({ token, setToken }) => {
   return (
@@ -37,6 +38,10 @@ export const ApplicationViews = ({ token, setToken }) => {
           <Route
             path="/create-comment/:postId"
             element={<CommentForm token={token} setToken={setToken} />}
+          />
+          <Route
+            path="/commentList/:postId"
+            element={<CommentList token={token} setToken={setToken} />}
           />
           <Route
             path="/create-post"
