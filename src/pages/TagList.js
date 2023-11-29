@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getTags } from "../services/tagServices";
+import { deleteTag, getTags } from "../services/tagServices.js";
 import { useNavigate } from "react-router-dom";
 
 export const TagList = ({ setToken, token }) => {
@@ -23,6 +23,17 @@ export const TagList = ({ setToken, token }) => {
       setSortedTags(sorted);
     }, [tags]);
 
+    const handleDelete = (tagId) => {
+      const confirmDelete = window.confirm(
+        "Are you sure you want to delete this tag?"
+      );
+      if (confirmDelete) {
+        deleteTag(tagId).then(() => {
+          getAndSetTags();
+        });
+      }
+    };
+
   return (
     <>
       <div className="h1">
@@ -35,8 +46,8 @@ export const TagList = ({ setToken, token }) => {
             <div className="card-item" key={tag.id}>
               <div>
                 <h3>{tag.label}</h3>
-                <button onClick={() => navigate(`/edit-tag/${tag.id}`)}>Edit</button>
-                <button>Delete</button>
+                <button>Edit</button>
+                <button onClick={() => handleDelete(tag.id)}>Delete</button>
               </div>
             </div>
           ))
