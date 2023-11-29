@@ -122,10 +122,11 @@ export const PostForm = () => {
               <textarea
                 id="content"
                 onChange={updatePost}
-                placeholder=""
+                placeholder="https://example.com"
                 value={post.content}
                 required
-              />
+                maxLength={200}
+              />Max Characters 200
             </div>
             <fieldset>
               <div className="box-input">

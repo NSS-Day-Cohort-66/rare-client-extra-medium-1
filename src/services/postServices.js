@@ -34,12 +34,13 @@ export const deletePost = (postId) => {
   });
 };
 
-export const editPost = (post) => {
-  return fetch(`http://localhost:8088/activities/${post.id}`, {
+export const editPost = (updatedPost) => {
+  return fetch(`http://localhost:8000/posts/${updatedPost.id}`, {
     method: "PUT",
     headers: {
+      Authorization: `Token ${localStorage.getItem("auth_token")}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(post),
+    body: JSON.stringify(updatedPost),
   })
 }

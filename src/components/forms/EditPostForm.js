@@ -6,7 +6,14 @@ import { editPost, getPostById } from "../../services/postServices";
 
 export const EditPostForm = () => {
   const [categoryLabel, setCategoryLabel] = useState([])
-  const [post, setPost] = useState({});
+  const [post, setPost] = useState({
+    title: "",
+    image_url: "",
+    content: "",
+    publication_date: new Date(),
+    approved: true,
+    category: 0
+  });
 
   const { postId } = useParams()
 
@@ -35,61 +42,29 @@ export const EditPostForm = () => {
     copy.category = e.target.value;
     setPost(copy);
   };
-
-//   const postPost = async (evt) => {
-//     evt.preventDefault();
   
-//     // Retrieve the token from localStorage
-//     const authToken = localStorage.getItem("auth_token");
+  const handleCancel = () => {
+    navigate("/postLists");
+  }; 
   
-//     // Check if the token is present
-//     if (!authToken) {
-//       console.error("Rock token not found in localStorage");
-//       return;
-//     }
-  
-//     try {
-//       // Send a POST request to create a new post
-//       const response = await fetch("http://localhost:8000/posts", {
-//         method: "PUT",
-//         headers: {
-//           Authorization: `Token ${localStorage.getItem("auth_token")}`,
-//           "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify({ ...post, }),
-//       });
-  
-//       if (!response.ok) {
-//         console.error("Error posting post:", response.statusText);
-//         return;
-//       }
-  
-//       // Parse the response to get the newly created post's ID
-//       const createdPost = await response.json();
-//       const postId = createdPost.id;
-  
-//       // Navigate to the detail page of the created post
-//       navigate(`/postLists/${postId}`);
-//     } catch (error) {
-//       console.error("Error posting post:", error);
-//     }
-//   };
-const handleSave = (event) => {
+  const handleSave = (event) => {
     event.preventDefault()
-
+  
     const updatedItem = {
-        title: post.title,
-        image_url: post.image_url,
-        content: post.content,
-        approved: true,
-        category: post.category,
-        tags: post.tags
+      id: post.id, // Add this line
+      title: post.title,
+      image_url: post.image_url,
+      content: post.content,
+      approved: true,
+      category: post.category.id
     }
-
+  
     editPost(updatedItem).then(() => {
       navigate(`/postLists/${postId}`)
     })
-}
+
+  }
+ 
 
   return (
     <main className="post-form-parent">
@@ -117,7 +92,8 @@ const handleSave = (event) => {
                 placeholder=""
                 value={post.image_url}
                 required
-              />
+                maxLength={200}
+              />Max Characters 200
             </div>
             <div>
               <label>Content:</label>
@@ -136,7 +112,7 @@ const handleSave = (event) => {
                 className="input"
                   name="category"
                   onChange={updateCategory}
-                  value={post.category}
+                  value={post.category.id}
                 >
                   <option value={0}>Please select a Category</option>
                   {categoryLabel.map((typeObj) => {
@@ -152,6 +128,7 @@ const handleSave = (event) => {
         </fieldset>
         </div>
         <button onClick={handleSave}>Edit Post</button>
+        <button className="cancel-button" onClick={handleCancel}>Cancel</button>
       </form>
     </main>
   );
