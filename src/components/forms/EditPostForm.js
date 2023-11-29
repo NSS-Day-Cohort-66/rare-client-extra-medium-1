@@ -57,7 +57,7 @@ export const EditPostForm = () => {
       content: post.content,
       approved: true,
       category: post.category,
-      tags: post.tags
+      tags: post.tags.map(tag => tag.id),
     }
   
     editPost(updatedItem).then(() => {
