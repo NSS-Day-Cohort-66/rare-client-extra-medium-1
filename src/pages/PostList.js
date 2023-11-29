@@ -36,22 +36,27 @@ export const PostList = ({ setToken, token }) => {
           posts.map((post) => (
             <div className="card-item" key={post.id}>
               <Link to={`/postLists/${post.id}`}>
-                <h4>
+                <div className="post-details">
+                  <div className="post-title">
                   Title: {post.title}
-                  <br />
+                  </div>
+                  <div className="post-author"> 
                   Author: {post.rare_user.user.username}
-                  <br />
+                  </div>
+                  <div className="post-category">
                   Category: {post.category.label}
-                  <br />
+                  </div>
+                  <div>
                   Tags:{" "}
-                  <div className="tag-div">
+                  </div>
+                  <div className="tag-div"> 
                     {post.tags.map((tag) => (
                       <div className="tag-label" key={tag.id}>
                         {tag.label}
                       </div>
                     ))}
                   </div>
-                </h4>
+                </div>
               </Link>
             </div>
           ))

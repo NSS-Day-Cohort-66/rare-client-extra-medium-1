@@ -77,7 +77,7 @@ export const NavBar = ({ token, setToken }) => {
                     navigate("/login");
                   }}
                 >
-                  Logout
+                  {"LOGOUT"}
                 </button>
               ) : (
                 <>
