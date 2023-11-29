@@ -86,6 +86,11 @@
   padding: 0px;
 }
 
+.card-label {
+  margin: 10px;
+  font-size: 20px;
+}
+
 .tags {
   display: flex;
   flex-wrap: wrap;
@@ -123,6 +128,35 @@
   border-radius: 5px;
   border: none;
   /* box-shadow: 1px 1px 3px black; */
+}
+
+.cat-btn-div {
+  display: flex;
+  width: 400px;
+  justify-content: space-evenly;
+  padding: 10px 12px;
+  font-weight: bold;
+  font-size: 12px;
+  border-radius: 5px;
+  border: none;
+  /* box-shadow: 1px 1px 3px black; */
+}
+
+.category-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+  border-radius: 10px;
+  padding: 5rem;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.366);
+  background-color: rgba(128, 128, 128, 0.279);
+  width: 80%;
+  margin: 20px auto;
+  /* margin-left: 20%; */
+  padding: 1rem;
+  text-align: center;
+  font-weight: bold;
 }
 
 .tag-div{
