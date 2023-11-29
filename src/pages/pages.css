@@ -191,7 +191,7 @@
 
 .manage-tags-div {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   padding: 10px;
 }
 
