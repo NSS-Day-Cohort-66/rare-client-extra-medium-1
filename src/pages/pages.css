@@ -6,6 +6,12 @@
   margin: 0 2rem 2rem 2rem ;
 }
 
+.post-image {
+  border-radius: 10px;
+  box-shadow: 1px 1px 3px;
+  margin: 10px
+}
+
 .post-header {
   display: flex;
   justify-content: space-between;
@@ -49,6 +55,7 @@
 .card-footer{
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .card-categories{
@@ -187,4 +194,8 @@
 
 .add-comment-button {
   margin: 10px;
+}
+
+.delete-button {
+  max-height: 40px;
 }

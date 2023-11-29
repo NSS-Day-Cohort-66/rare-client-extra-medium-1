@@ -68,24 +68,28 @@ export const MyPosts = ({ setToken, token }) => {
                 </div>
               </div>
               <div className="card-body">
-                <img src={post.image_url} alt={post.title} width="400px" />
+                <img className="post-image" src={post.image_url} alt={post.title} width="400px" />
                 <div>{post.content}</div>
               </div>
               <div className="card-footer">
-                <div className="middle_post">
+                <div className="card-categories">
                   Category: {post.category.label}
                 </div>
-                
-                  <h4 className="post-author">
-                    Author: {post.rare_user.user.username}
-                  </h4>
-                  <h4 className="post-reactions">
-                    Reaction Count: {post.tags.length}
-                  </h4>
-                
-                <button onClick={() => handleDeleteClick(post)}>
-                  Delete Post
-                </button>
+
+                <h4 className="post-author">
+                  Author: {post.rare_user.user.username}
+                </h4>
+                <h4 className="post-reactions">
+                  Reaction Count: {post.tags.length}
+                </h4>
+                <div className="comment-buttons">
+                  <button
+                    className="delete-button"
+                    onClick={() => handleDeleteClick(post)}
+                  >
+                    Delete Post
+                  </button>
+                </div>
               </div>
             </div>
           ))
