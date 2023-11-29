@@ -3,23 +3,26 @@ import { getAllPosts } from "../services/postServices";
 import { Link, useNavigate } from "react-router-dom";
 
 export const PostList = ({ setToken, token }) => {
-  const [posts, setPosts] = useState({});
+ const [posts, setPosts] = useState({});
+ const navigate = useNavigate();
 
-  const navigate = useNavigate();
+ const getAndSetPosts = () => {
+   getAllPosts().then((postsArray) => {
+     const filteredPosts = postsArray.filter(
+       (post) => new Date(post.publication_date) < new Date()
+     );
 
-  const getAndSetPosts = () => {
-    getAllPosts().then((postsArray) => {
-      const filteredPosts = postsArray.filter(
-        (post) => new Date(post.publication_date) < new Date()
-      );
+     const sortedPosts = filteredPosts.sort(
+       (a, b) => new Date(b.publication_date) - new Date(a.publication_date)
+     );
 
-      const sortedPosts = filteredPosts.sort(
-        (a, b) => new Date(b.publication_date) - new Date(a.publication_date)
-      );
+     setPosts(sortedPosts);
+   });
+ };
 
-      setPosts(sortedPosts);
-    });
-  };
+ useEffect(() => {
+   getAndSetPosts();
+ }, []);
 
   useEffect(() => {
     getAndSetPosts();
