@@ -35,12 +35,7 @@ export const deletePost = (postId) => {
       Authorization: `Token ${localStorage.getItem("auth_token")}`,
       "Content-Type": "application/json",
     },
-  }).then((res) => {
-    if (!res.ok) {
-      throw new Error(`Failed to delete post with ID ${postId}`);
-    }
-    return res.json();
-  });
+  })
 };
 
 export const editPost = (updatedPost) => {

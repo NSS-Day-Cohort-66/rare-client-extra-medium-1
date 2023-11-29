@@ -20,7 +20,7 @@ export const CategoryList = ({ setToken, token }) => {
 
   const handleUpdate = (categoryId) => {
     navigate(`/categories/${categoryId}/edit`);
-  }
+  };
 
   const handleDelete = (categoryId) => {
     const confirmDelete = window.confirm(
@@ -35,19 +35,25 @@ export const CategoryList = ({ setToken, token }) => {
 
   return (
     <>
-      <div className="h1">Here are the Categories!</div>
-      <button className="btn-div" onClick={() => navigate("/create-category")}>ADD NEW CATEGORY</button>
+      <div className="page-title">Categories</div>
+      <button className="btn-div" onClick={() => navigate("/create-category")}>
+        ADD NEW CATEGORY
+      </button>
       <div className="content">
         {categories && categories.length ? (
           categories
             .slice() // Create a copy of the array to avoid modifying the original
             .sort((a, b) => a.label.localeCompare(b.label)) // Sort alphabetically
             .map((category) => (
-              <div className="card-item" key={category.id}>
-                <div>
-                  <h3>{category.label}</h3>
-                  <button onClick={() => handleUpdate(category.id)}>Edit</button>
-                  <button onClick={() => handleDelete(category.id)}>Delete</button>
+              <div className="category-item" key={category.id}>
+                <div className="card-label">{category.label}</div>
+                <div className="cat-btn-div">
+                  <button onClick={() => handleUpdate(category.id)}>
+                    Edit
+                  </button>
+                  <button onClick={() => handleDelete(category.id)}>
+                    Delete
+                  </button>
                 </div>
               </div>
             ))

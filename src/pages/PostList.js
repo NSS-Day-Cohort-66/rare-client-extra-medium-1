@@ -24,47 +24,52 @@ export const PostList = ({ setToken, token }) => {
    getAndSetPosts();
  }, []);
 
- return (
-   <>
-     <div className="h1">Here are the Posts!</div>
-     <button className="btn-div" onClick={() => navigate("/create-post")}>
-       NEW POST
-     </button>
-     <div>
-       {posts && posts.length ? (
-         posts.map((post) => (
-           <div className="card-item" key={post.id}>
-             <Link to={`/postLists/${post.id}`}>
-               <h4>
-                Title: {post.title}
-                <br />
-                Author: {post.rare_user.user.username}
-                <br />
-                Category: {post.category.label}
-                <br />
-                Tags:{" "}
-                <div className="tag-div">
-                  {post.tags.map((tag) => (
-                    <div className="tag-label" key={tag.id}>
-                      {tag.label}
+  useEffect(() => {
+    getAndSetPosts();
+  }, []);
+
+  return (
+    <>
+      <div className="page-title">All Posts</div>
+      <button className="btn-div" onClick={() => navigate("/create-post")}>
+        NEW POST
+      </button>
+      <div>
+        {posts && posts.length ? (
+          posts.map((post) => (
+            <div className="card-item" key={post.id}>
+              <Link to={`/postLists/${post.id}`}>
+                <div className="post-details">
+                  <div className="post-header">
+                    <div className="post-title">Title: {post.title}</div>
+                    <div className="post-date">Date: {post.publication_date}</div>
+                    <div className="post-author">
+                      Author: {post.rare_user.user.username}
                     </div>
-                  ))}
+                  </div>
+                  <div className="post-footer">
+                    <div className="post-category">
+                      Category: {post.category.label}
+                    </div>
+                    <div className="post-tag-container">
+                      <div>Tags: </div>
+                      <div className="tag-div">
+                        {post.tags.map((tag) => (
+                          <div className="tag-label" key={tag.id}>
+                            {tag.label}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
                 </div>
-               </h4>
-             </Link>
-             {post?.is_owner ? (
-               <div className="manage-tags-div">
-                <button onClick={() => navigate(`/postList/${post.id}/edit-post`)}>Edit</button>
-               </div>
-             ) : (
-               ""
-             )}
-           </div>
-         ))
-       ) : (
-         <p>No posts found.</p>
-       )}
-     </div>
-   </>
- );
+              </Link>
+            </div>
+          ))
+        ) : (
+          <p>No posts found.</p>
+        )}
+      </div>
+    </>
+  );
 };
