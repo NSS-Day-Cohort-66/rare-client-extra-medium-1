@@ -1,3 +1,57 @@
-.navbar-item img {
+/* .navbar-item img {
    max-height: 3rem;
+} */
+a {
+   text-decoration: none;
+   color: inherit; /* Set the color to inherit from the parent element */
+ }
+
+ .navbar-logo-group {
+   display: flex;
+   width: 170px;
+   flex-direction: column;
+ }
+
+.navbar-item {
+   max-height: 100px;
+   margin: 0 50px;
+   font-weight: bold;
+   display: flex;
+   align-items: center
 }
+
+.navbar-logo {
+   height: 170px;
+   width: 170px;
+}
+
+.navbar {
+   display: flex;
+   flex-wrap: nowrap;
+   justify-content: flex-start;
+}
+
+.navbar-menu {
+   display: flex;
+   justify-content: space-between;
+   width: 90%;
+}
+
+.navbar-brand {
+   display: flex;
+   flex-wrap: nowrap;
+}
+
+.navbar-start {
+   display: flex;
+   justify-content: center;
+   width: 100%;
+}
+
+.navbar-end {
+   display: flex;
+   justify-content: flex-end;
+   width: 30%;
+   align-items: center;
+}
+
