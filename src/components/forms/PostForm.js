@@ -112,7 +112,7 @@ export const PostForm = () => {
                 id="image_url"
                 onChange={updatePost}
                 type="text"
-                placeholder=""
+                placeholder="https://example.com"
                 value={post.image_url}
                 required
               />
@@ -125,7 +125,8 @@ export const PostForm = () => {
                 placeholder=""
                 value={post.content}
                 required
-              />
+                maxLength={200}
+              />Max Characters 200
             </div>
             <fieldset>
               <div className="box-input">

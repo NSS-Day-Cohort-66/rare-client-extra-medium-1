@@ -15,6 +15,7 @@ import { CategoryEdit } from "../components/forms/CategoryEdit";
 import { EditTagForm } from "../components/forms/EditTagForm";
 import { CommentForm } from "../components/forms/CommentForm";
 import { CommentList } from "../pages/CommentList";
+import { EditPostForm } from "../components/forms/EditPostForm";
 
 export const ApplicationViews = ({ token, setToken }) => {
   return (
@@ -44,6 +45,10 @@ export const ApplicationViews = ({ token, setToken }) => {
           <Route
             path="/create-comment/:postId"
             element={<CommentForm token={token} setToken={setToken} />}
+          />
+          <Route
+            path="/postList/:postId/edit-post"
+            element={<EditPostForm token={token} setToken={setToken} />}
           />
           <Route
             path="/postList/:postId/commentList"
