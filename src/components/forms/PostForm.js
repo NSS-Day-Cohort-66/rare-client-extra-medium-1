@@ -112,7 +112,7 @@ export const PostForm = () => {
                 id="image_url"
                 onChange={updatePost}
                 type="text"
-                placeholder=""
+                placeholder="https://example.com"
                 value={post.image_url}
                 required
               />
@@ -122,7 +122,7 @@ export const PostForm = () => {
               <textarea
                 id="content"
                 onChange={updatePost}
-                placeholder="https://example.com"
+                placeholder=""
                 value={post.content}
                 required
                 maxLength={200}

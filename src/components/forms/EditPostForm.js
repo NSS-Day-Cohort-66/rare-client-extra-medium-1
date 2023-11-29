@@ -39,7 +39,7 @@ export const EditPostForm = () => {
 
   const updateCategory = (e) => {
     const copy = { ...post };
-    copy.category = e.target.value;
+    copy.category.id = e.target.value;
     setPost(copy);
   };
   
@@ -56,7 +56,7 @@ export const EditPostForm = () => {
       image_url: post.image_url,
       content: post.content,
       approved: true,
-      category: post.category,
+      category: post.category.id,
       tags: post.tags.map(tag => tag.id),
     }
   
@@ -115,7 +115,7 @@ export const EditPostForm = () => {
                   onChange={updateCategory}
                   value={post.category.id}
                 >
-                  <option value={0}>Please select a Category</option>
+                  {/* <option value={0}>Please select a Category</option> */}
                   {categoryLabel.map((typeObj) => {
                     return (
                       <option key={typeObj.id} value={typeObj.id}>
