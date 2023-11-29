@@ -61,36 +61,32 @@ export const MyPosts = ({ setToken, token }) => {
         {myPosts && myPosts.length ? (
           myPosts.map((post) => (
             <div className="card-item" key={post.id}>
-                <div className="card-header">
-                  <div className="post-title">{post.title}</div>
-                  <div className="post-date">
-                    Publication Date: {post.publication_date}
-                  </div>
+              <div className="card-header">
+                <div className="post-title">{post.title}</div>
+                <div className="post-date">
+                  Publication Date: {post.publication_date}
                 </div>
-                <div className="card-body">
-                  <img
-                    src={post.image_url}
-                    alt={post.title}
-                    width="400px"
-                  />
-                  <div>
-                  {post.content}
-                  </div>
-                </div>
+              </div>
+              <div className="card-body">
+                <img src={post.image_url} alt={post.title} width="400px" />
+                <div>{post.content}</div>
+              </div>
+              <div className="card-footer">
                 <div className="middle_post">
-                  <h4>Category: {post.category.label}</h4>
+                  Category: {post.category.label}
                 </div>
-                <div className="bottom_post">
+                
                   <h4 className="post-author">
                     Author: {post.rare_user.user.username}
                   </h4>
                   <h4 className="post-reactions">
                     Reaction Count: {post.tags.length}
                   </h4>
-                </div>
+                
                 <button onClick={() => handleDeleteClick(post)}>
                   Delete Post
                 </button>
+              </div>
             </div>
           ))
         ) : (
