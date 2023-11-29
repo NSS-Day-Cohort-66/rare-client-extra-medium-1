@@ -31,26 +31,31 @@ export const CommentList = ({ setToken, token }) => {
   }, [postId]);
   return (
     <>
+      <div className="h1">{post.title}</div>
       <Link
         style={{ textDecoration: "none", color: "rgb(79, 17, 146)" }}
         post={post}
         key={post.id}
         to={`/postLists/${post.id}`}
       >
-        <div className="h1">{post.title}</div>
+        <div>Go Back to Post</div>
       </Link>
       <div className="content">
-        {comments.map((comment) => {
-          return (
-            <div className="card-item" key={comment.id}>
-              <div>
-                <h3>{comment.content}</h3>
-                <h3>Author: {comment.author?.user?.username}</h3>
-                <h3>{comment.created_on}</h3>
+        {comments.length === 0 ? (
+          <p>No comments to display.</p>
+        ) : (
+          comments.map((comment) => {
+            return (
+              <div className="card-item" key={comment.id}>
+                <div>
+                  <h3>{comment.content}</h3>
+                  <h3>Author: {comment.author?.user?.username}</h3>
+                  <h3>{comment.created_on}</h3>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })
+        )}
       </div>
     </>
   );
