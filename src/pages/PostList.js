@@ -27,7 +27,7 @@ export const PostList = ({ setToken, token }) => {
 
   return (
     <>
-      <div className="h1">Here are the Posts!</div>
+      <div className="post-page-title">All Posts</div>
       <button className="btn-div" onClick={() => navigate("/create-post")}>
         NEW POST
       </button>
@@ -37,24 +37,27 @@ export const PostList = ({ setToken, token }) => {
             <div className="card-item" key={post.id}>
               <Link to={`/postLists/${post.id}`}>
                 <div className="post-details">
-                  <div className="post-title">
-                  Title: {post.title}
+                  <div className="post-header">
+                    <div className="post-title">Title: {post.title}</div>
+                    <div className="post-date">Date: {post.publication_date}</div>
+                    <div className="post-author">
+                      Author: {post.rare_user.user.username}
+                    </div>
                   </div>
-                  <div className="post-author"> 
-                  Author: {post.rare_user.user.username}
-                  </div>
-                  <div className="post-category">
-                  Category: {post.category.label}
-                  </div>
-                  <div>
-                  Tags:{" "}
-                  </div>
-                  <div className="tag-div"> 
-                    {post.tags.map((tag) => (
-                      <div className="tag-label" key={tag.id}>
-                        {tag.label}
+                  <div className="post-footer">
+                    <div className="post-category">
+                      Category: {post.category.label}
+                    </div>
+                    <div className="post-tag-container">
+                      <div>Tags: </div>
+                      <div className="tag-div">
+                        {post.tags.map((tag) => (
+                          <div className="tag-label" key={tag.id}>
+                            {tag.label}
+                          </div>
+                        ))}
                       </div>
-                    ))}
+                    </div>
                   </div>
                 </div>
               </Link>
