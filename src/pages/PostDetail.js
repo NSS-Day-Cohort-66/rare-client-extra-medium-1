@@ -91,7 +91,7 @@ export const PostDetail = () => {
 
               Tags:{" "}
               {post.tags.map((tag) => (
-                <li className="card-tag">{tag.label}</li>
+                <li className="card-tag" key={tag.id}>{tag.label}</li>
               ))}
               </div>
             </div>
@@ -113,7 +113,7 @@ export const PostDetail = () => {
         <div className="tag-container">
           {tags
             ? tags.map((tag) => (
-                <div>
+                <div key={tag.id}>
                   <input
                     type="checkbox"
                     checked={selectedTags.has(tag.id)}
@@ -134,7 +134,12 @@ export const PostDetail = () => {
           </button>
         </div>
       </dialog>
-      <div className="btn-div" key={postId}>
+      <div className="btn-div" key={`viewComments${postId}`}>
+        <button onClick={() => navigate(`/postList/${postId}/commentList`)}>
+          View Comments
+        </button>
+      </div>
+      <div className="btn-div" key={`addComment${postId}`}>
         <button onClick={() => navigate(`/create-comment/${postId}`)}>
           Add New Comment
         </button>
