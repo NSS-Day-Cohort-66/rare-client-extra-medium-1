@@ -22,7 +22,6 @@ a {
    display: flex;
    flex-wrap: nowrap;
    align-items: center;
-   border-bottom: 1px solid black;
 }
 
 .navbar-logo {
