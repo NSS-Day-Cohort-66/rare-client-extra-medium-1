@@ -84,15 +84,17 @@ export const PostDetail = () => {
               Content: {post.content}
             </div>
             <div className="card-footer">
-              <div className="card-categories">
+              <div className="card-categories-header">
                 Category: {"\t"}{post.category.label}
               </div>
               <div className="card-tags">
-
-              Tags:{" "}
+              <ul className="card-tag-header">Tags:{" "}</ul>
+              <div className="tags">
               {post.tags.map((tag) => (
                 <li className="card-tag" key={tag.id}>{tag.label}</li>
               ))}
+
+              </div>
               </div>
             </div>
           </>
@@ -129,18 +131,16 @@ export const PostDetail = () => {
           <button className="save-tag-btn" onClick={saveNewTags}>
             Save Tag Selection
           </button>
-          <button className="save-tag-btn" onClick={handleCloseTags}>
+          <button className="close-tag-btn" onClick={handleCloseTags}>
             Close
           </button>
         </div>
       </dialog>
-      <div className="btn-div" key={`viewComments${postId}`}>
-        <button onClick={() => navigate(`/postList/${postId}/commentList`)}>
+      <div className="comment-buttons" key={`viewComments${postId}`}>
+        <button className="view-comment-button" onClick={() => navigate(`/postList/${postId}/commentList`)}>
           View Comments
         </button>
-      </div>
-      <div className="btn-div" key={`addComment${postId}`}>
-        <button onClick={() => navigate(`/create-comment/${postId}`)}>
+        <button className="add-comment-button" onClick={() => navigate(`/create-comment/${postId}`)}>
           Add New Comment
         </button>
       </div>
