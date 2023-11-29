@@ -80,7 +80,13 @@ export const CommentList = ({ setToken, token }) => {
                   <h3>{comment.content}</h3>
                   <h3>Author: {comment.author?.user?.username}</h3>
                   <h3>{comment.created_on}</h3>
-                  <button onClick={() => handleDelete(comment.id)}>Delete</button>
+                    {comment?.is_owner ? (
+                      <button 
+                        onClick={() => 
+                          handleDelete(comment.id)}>Delete</button>
+                    ) : (
+                      ""
+                    )}
                 </div>
               </div>
             );
