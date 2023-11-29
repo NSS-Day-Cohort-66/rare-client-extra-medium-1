@@ -43,3 +43,13 @@ export const getTags = () => {
             body: JSON.stringify(tag)
         })
     }
+
+    export const deleteTag = (tagId) => {
+        return fetch(`http://localhost:8000/tags/${tagId}`, 
+        {
+            method: "DELETE",
+            headers: {
+                Authorization: `Token ${localStorage.getItem("auth_token")}`,
+            },
+        })
+    }
