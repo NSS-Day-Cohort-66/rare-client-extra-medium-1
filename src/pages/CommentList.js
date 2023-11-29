@@ -23,10 +23,10 @@ export const CommentList = ({ setToken, token }) => {
       ];
 
       filteredComments.sort(
-        (a, b) =>
-          new Date(b.comment?.created_on) - new Date(a.comment?.created_on)
+        (a, b) => new Date(b.created_on) - new Date(a.created_on)
       );
       setComments(filteredComments);
+      console.log(filteredComments);
     });
   }, [postId]);
   return (
@@ -45,7 +45,7 @@ export const CommentList = ({ setToken, token }) => {
             <div className="card-item" key={comment.id}>
               <div>
                 <h3>{comment.content}</h3>
-                <h3>{comment.author?.user?.username}</h3>
+                <h3>Author: {comment.author?.user?.username}</h3>
                 <h3>{comment.created_on}</h3>
               </div>
             </div>
