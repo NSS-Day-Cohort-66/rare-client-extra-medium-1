@@ -15,7 +15,7 @@
   margin-top: 30px;
   display: flex;
   justify-content: space-between;
-  max-height: 100px;
+  /* max-height: 400px; */
 }
 
 .card-item {
@@ -61,6 +61,7 @@
 
 .card-tags{
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
   margin: 10px;
@@ -103,25 +104,6 @@
   margin: auto;
   padding: 20px;
 }
-
-/* .save-tag-btn {
-  background-color: green;
-  color: white;
-  border: none;
-  padding: 5px;
-  border-radius: 5px;
-  margin: 10px;
-}
-
-.save-tag-btn:hover {
-  transform: scale(1.1);
-  cursor: pointer;
-  background-color: green;
-  color: white;
-  border: none;
-  padding: 5px;
-  border-radius: 5px;
-} */
 
 .btn-div {
   display: flex;
