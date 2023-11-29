@@ -36,9 +36,7 @@ export const TagList = ({ setToken, token }) => {
 
   return (
     <>
-      <div className="h1">
-        Here are the Tags!
-      </div>
+      <div className="page-title">Tags</div>
       <button className="btn-div" onClick={ () => navigate("/create-tag")}>ADD NEW TAG</button>
       <div className="content">
         {sortedTags && sortedTags.length ? (

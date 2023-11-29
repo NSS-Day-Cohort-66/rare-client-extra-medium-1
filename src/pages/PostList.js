@@ -27,7 +27,7 @@ export const PostList = ({ setToken, token }) => {
 
   return (
     <>
-      <div className="post-page-title">All Posts</div>
+      <div className="page-title">All Posts</div>
       <button className="btn-div" onClick={() => navigate("/create-post")}>
         NEW POST
       </button>
