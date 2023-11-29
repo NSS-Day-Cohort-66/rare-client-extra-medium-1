@@ -3,26 +3,22 @@ import { getAllPosts } from "../services/postServices";
 import { Link, useNavigate } from "react-router-dom";
 
 export const PostList = ({ setToken, token }) => {
- const [posts, setPosts] = useState({});
- const navigate = useNavigate();
+  const [posts, setPosts] = useState({});
+  const navigate = useNavigate();
 
- const getAndSetPosts = () => {
-   getAllPosts().then((postsArray) => {
-     const filteredPosts = postsArray.filter(
-       (post) => new Date(post.publication_date) < new Date()
-     );
+  const getAndSetPosts = () => {
+    getAllPosts().then((postsArray) => {
+      const filteredPosts = postsArray.filter(
+        (post) => new Date(post.publication_date) < new Date()
+      );
 
-     const sortedPosts = filteredPosts.sort(
-       (a, b) => new Date(b.publication_date) - new Date(a.publication_date)
-     );
+      const sortedPosts = filteredPosts.sort(
+        (a, b) => new Date(b.publication_date) - new Date(a.publication_date)
+      );
 
-     setPosts(sortedPosts);
-   });
- };
-
- useEffect(() => {
-   getAndSetPosts();
- }, []);
+      setPosts(sortedPosts);
+    });
+  };
 
   useEffect(() => {
     getAndSetPosts();
@@ -42,7 +38,9 @@ export const PostList = ({ setToken, token }) => {
                 <div className="post-details">
                   <div className="post-header">
                     <div className="post-title">Title: {post.title}</div>
-                    <div className="post-date">Date: {post.publication_date}</div>
+                    <div className="post-date">
+                      Date: {post.publication_date}
+                    </div>
                     <div className="post-author">
                       Author: {post.rare_user.user.username}
                     </div>
@@ -64,6 +62,19 @@ export const PostList = ({ setToken, token }) => {
                   </div>
                 </div>
               </Link>
+                    {post?.is_owner ? (
+                      <div className="manage-tags-div">
+                        <button
+                          onClick={() =>
+                            navigate(`/postList/${post.id}/edit-post`)
+                          }
+                        >
+                          Edit
+                        </button>
+                      </div>
+                    ) : (
+                      ""
+                    )}
             </div>
           ))
         ) : (

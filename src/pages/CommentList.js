@@ -17,7 +17,6 @@ export const CommentList = ({ setToken, token }) => {
 
   useEffect(() => {
     getComments().then((data) => {
-      console.log(data);
       const filteredComments = [
         ...data.filter((comment) => comment.post.id === parseInt(postId)),
       ];
@@ -26,7 +25,6 @@ export const CommentList = ({ setToken, token }) => {
         (a, b) => new Date(b.created_on) - new Date(a.created_on)
       );
       setComments(filteredComments);
-      console.log(filteredComments);
     });
   }, [postId]);
 
