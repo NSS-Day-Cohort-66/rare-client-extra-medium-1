@@ -80,21 +80,21 @@ export const PostDetail = () => {
                 Author: {post.rare_user.user.username}
               </div>
             </div>
-            <div className="card-body">
-              Content: {post.content}
-            </div>
+            <div className="card-body">Content: {post.content}</div>
             <div className="card-footer">
-              <div className="card-categories-header">
-                Category: {"\t"}{post.category.label}
+              <div className="cat-main">
+                <div className="card-categories-header">Category:</div>
+                <div className="cat-label">{post.category.label}</div>
               </div>
               <div className="card-tags">
-              <ul className="card-tag-header">Tags:{" "}</ul>
-              <div className="tags">
-              {post.tags.map((tag) => (
-                <li className="card-tag" key={tag.id}>{tag.label}</li>
-              ))}
-
-              </div>
+                <ul className="card-tag-header">Tags: </ul>
+                <div className="tags">
+                  {post.tags.map((tag) => (
+                    <li className="card-tag" key={tag.id}>
+                      {tag.label}
+                    </li>
+                  ))}
+                </div>
               </div>
             </div>
           </>
@@ -137,10 +137,16 @@ export const PostDetail = () => {
         </div>
       </dialog>
       <div className="comment-buttons" key={`viewComments${postId}`}>
-        <button className="view-comment-button" onClick={() => navigate(`/postList/${postId}/commentList`)}>
+        <button
+          className="view-comment-button"
+          onClick={() => navigate(`/postList/${postId}/commentList`)}
+        >
           View Comments
         </button>
-        <button className="add-comment-button" onClick={() => navigate(`/create-comment/${postId}`)}>
+        <button
+          className="add-comment-button"
+          onClick={() => navigate(`/create-comment/${postId}`)}
+        >
           Add New Comment
         </button>
       </div>

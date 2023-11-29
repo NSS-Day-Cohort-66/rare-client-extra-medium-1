@@ -54,6 +54,11 @@
   border: none;
 }
 
+.card-categories-header{
+  margin: 10px;
+  border: none;
+}
+
 .card-tags{
   display: flex;
   flex-wrap: wrap;
@@ -63,7 +68,7 @@
 }
 
 .card-tag-header {
-  margin: 0px;
+  margin: 10px 0px;
   padding-left: 0px
 }
 
@@ -144,6 +149,14 @@
   margin: 5px;
   padding: 5px;
   border-radius: 10px;
+}
+
+.cat-main {
+  margin: 10px
+}
+
+.cat-label {
+  font-weight: lighter;
 }
 
 .manage-tags-div {
