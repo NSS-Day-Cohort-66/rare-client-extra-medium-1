@@ -46,7 +46,7 @@ export const EditPostForm = () => {
   const handleCancel = () => {
     navigate("/postLists");
   }; 
-  
+
   const handleSave = (event) => {
     event.preventDefault()
   
@@ -56,7 +56,8 @@ export const EditPostForm = () => {
       image_url: post.image_url,
       content: post.content,
       approved: true,
-      category: post.category.id
+      category: post.category,
+      tags: post.tags
     }
   
     editPost(updatedItem).then(() => {
