@@ -20,8 +20,8 @@ export const NavBar = ({ token, setToken }) => {
       aria-label="main navigation"
     >
       <div className="navbar-brand">
-        <a className="navbar-item" href="/">
-          <img src={Logo} height="3rem" alt="Rare Logo" />{" "}
+        <a className="navbar-logo-group" href="/">
+          <img className="navbar-logo" src={Logo} height="3rem" alt="Rare Logo" />{" "}
           <h1 className="title is-4">Rare Publishing</h1>
         </a>
 
@@ -49,7 +49,7 @@ export const NavBar = ({ token, setToken }) => {
                 Home
               </Link>
               <Link to="/postLists" className="navbar-item">
-                Posts
+                All Posts
               </Link>
               <Link to="/myPosts" className="navbar-item">
                 My Posts
@@ -67,7 +67,7 @@ export const NavBar = ({ token, setToken }) => {
         </div>
 
         <div className="navbar-end">
-          <div className="navbar-item">
+          <div className="navbar-logout">
             <div className="buttons">
               {token ? (
                 <button
@@ -77,7 +77,7 @@ export const NavBar = ({ token, setToken }) => {
                     navigate("/login");
                   }}
                 >
-                  Logout
+                  {"LOGOUT"}
                 </button>
               ) : (
                 <>

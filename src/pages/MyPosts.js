@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import "./pages.css";
 import { getAllPosts, deletePost } from "../services/postServices";
 
-
 export const MyPosts = ({ setToken, token }) => {
   const [myPosts, setMyPosts] = useState([]);
   const [postToDelete, setPostToDelete] = useState(null);
- 
+
   const getAndSetMyPosts = async () => {
     try {
       const postsArray = await getAllPosts();
@@ -27,7 +26,9 @@ export const MyPosts = ({ setToken, token }) => {
   useEffect(() => {
     if (postToDelete) {
       const handleDeleteConfirmation = async () => {
-        const confirmDelete = window.confirm("Are you sure you want to delete this post?");
+        const confirmDelete = window.confirm(
+          "Are you sure you want to delete this post?"
+        );
 
         if (confirmDelete) {
           try {
@@ -53,47 +54,48 @@ export const MyPosts = ({ setToken, token }) => {
     getAndSetMyPosts();
   }, [postToDelete]); // Fetch posts whenever postToDelete changes
 
-
   return (
     <>
-      <div className="h1">Here are my Posts!</div>
+      <div className="page-title">My Posts</div>
       <div className="content">
         {myPosts && myPosts.length ? (
           myPosts.map((post) => (
-            <div key={post.id}>
-              <div className="post-item">
-                <div className="top-post">
-                  <h4 className="post-title">{post.title}</h4>
-                  <h4 className="post-date">
-                    Publication Date: {post.publication_date}
-                  </h4>
+            <div className="card-item" key={post.id}>
+              <div className="card-header">
+                <div className="post-title">{post.title}</div>
+                <div className="post-date">
+                  Publication Date: {post.publication_date}
                 </div>
-                <div className="middle_post">
-                  <img
-                    src={post.image_url}
-                    alt={post.title}
-                    width="400px"
-                  ></img>
-                  <h4>Category: {post.category.label}</h4>
-                  <h4>{post.content}</h4>
+              </div>
+              <div className="card-body">
+                <img className="post-image" src={post.image_url} alt={post.title} width="400px" />
+                <div>{post.content}</div>
+              </div>
+              <div className="card-footer">
+                <div className="card-categories">
+                  Category: {post.category.label}
                 </div>
-                <div className="bottom_post">
-                  <h4 className="post-author">
-                    Author: {post.rare_user.user.username}
-                  </h4>
-                  <h4 className="post-reactions">
-                    Reaction Count: {post.tags.length}
-                  </h4>
+
+                <h4 className="post-author">
+                  Author: {post.rare_user.user.username}
+                </h4>
+                <h4 className="post-reactions">
+                  Reaction Count: {post.tags.length}
+                </h4>
+                <div className="comment-buttons">
+                  <button
+                    className="delete-button"
+                    onClick={() => handleDeleteClick(post)}
+                  >
+                    Delete Post
+                  </button>
                 </div>
-                <button onClick={() => handleDeleteClick(post)}>
-                  Delete Post
-                </button>
               </div>
             </div>
           ))
         ) : (
           <p>No posts found.</p>
-        )} 
+        )}
       </div>
     </>
   );
