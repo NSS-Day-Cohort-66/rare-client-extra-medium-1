@@ -73,20 +73,29 @@ export const PostDetail = () => {
     <>
       <div className="card-item">
         {post ? (
-          <div className="card-item" key={post.id}>
-            <h4>
-              Title: {post.title}
-              <br />
-              Author: {post.rare_user.user.username}
-              <br />
-              Category: {post.category.label}
-              <br />
+          <>
+            <div className="card-header" key={post.id}>
+              <div className="card-title">Title: {post.title}</div>
+              <div className="card-author">
+                Author: {post.rare_user.user.username}
+              </div>
+            </div>
+            <div className="card-body">
+              Content: {post.content}
+            </div>
+            <div className="card-footer">
+              <div className="card-categories">
+                Category: {"\t"}{post.category.label}
+              </div>
+              <div className="card-tags">
+
               Tags:{" "}
               {post.tags.map((tag) => (
-                <li>{tag.label}</li>
+                <li className="card-tag">{tag.label}</li>
               ))}
-            </h4>
-          </div>
+              </div>
+            </div>
+          </>
         ) : (
           <p>No post found.</p>
         )}
