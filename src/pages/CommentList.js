@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./pages.css";
-import { getComments } from "../services/commentService";
+import { deleteComment, getComments } from "../services/commentService";
 import { getPostByPostId } from "../services/postServices";
 
 export const CommentList = ({ setToken, token }) => {
@@ -29,6 +29,37 @@ export const CommentList = ({ setToken, token }) => {
       console.log(filteredComments);
     });
   }, [postId]);
+
+  // const handleDelete = (commentId) => {
+  //   const confirmDelete = window.confirm(
+  //     "Are you sure you want to delete this tag?"
+  //   );
+  //   if (confirmDelete) {
+  //     deleteComment(commentId).then(() => {
+  //       setComments();
+  //     });
+  //   }
+  // };
+
+  const handleDelete = (commentId) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this comment?"
+    );
+    if (confirmDelete) {
+      deleteComment(commentId).then(() => {
+        // Filter out the deleted comment from the comments list
+        const updatedComments = comments.filter(
+          (comment) => comment.id !== commentId
+        );
+        setComments(updatedComments);
+      }).catch((error) => {
+        // Handle error, if any, during deletion
+        console.error("Error deleting comment:", error);
+      });
+    }
+  };
+  
+
   return (
     <>
       <div className="h1">{post.title}</div>
@@ -51,6 +82,7 @@ export const CommentList = ({ setToken, token }) => {
                   <h3>{comment.content}</h3>
                   <h3>Author: {comment.author?.user?.username}</h3>
                   <h3>{comment.created_on}</h3>
+                  <button onClick={() => handleDelete(comment.id)}>Delete</button>
                 </div>
               </div>
             );
