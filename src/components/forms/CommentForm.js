@@ -53,7 +53,7 @@ export const CommentForm = () => {
             </div>
           </fieldset>
             <div className="button-div">
-              <button className="save-button" onClick={handleSave}>
+              <button className="cancel-button" onClick={handleSave}>
                 submit
               </button>
               <button className="cancel-button" onClick={() => navigate(-1)}>
