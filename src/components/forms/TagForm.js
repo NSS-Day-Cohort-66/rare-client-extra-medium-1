@@ -49,11 +49,14 @@ export const TagForm = () => {
               />
             </div>
           </fieldset>
-            <div className="button-div">
-              <button className="save-button" onClick={handleSave}>
-                Submit Tag
-              </button>
-            </div>
+          <div className="button-div">
+            <button className="save-button" onClick={handleSave}>
+              Submit Tag
+            </button>
+            <button className="cancel-button" onClick={() => navigate(-1)}>
+              Cancel
+            </button>
+          </div>
         </div>
       </form>
     </main>

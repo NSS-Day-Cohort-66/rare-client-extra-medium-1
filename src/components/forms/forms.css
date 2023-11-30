@@ -25,7 +25,7 @@
 }
 
 label{
-    width: 12%;
+    width: 20%;
 }
 
 .form-field {
@@ -60,7 +60,7 @@ label{
 .box-input {
     display: flex;
     justify-content: space-between;
-    width: 30%;
+    width: 40%;
 }
 
 .tags-group {

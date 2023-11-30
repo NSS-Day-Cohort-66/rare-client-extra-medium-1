@@ -174,7 +174,10 @@ export const PostForm = () => {
           </fieldset>
         </div>
         <div className="button-div">
-          <button onClick={postPost}>Add Post</button>
+          <button className="cancel-button" onClick={postPost}>Add Post</button>
+          <button className="cancel-button" onClick={() => navigate(-1)}>
+              Cancel
+            </button>
         </div>
       </form>
     </main>
