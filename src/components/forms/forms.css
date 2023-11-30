@@ -4,7 +4,7 @@
     align-content: center;
 }
 
-.post-form-parent {
+.form-parent {
     display: flex;
     justify-content: center;
 }
@@ -16,7 +16,7 @@
     justify-content: center; */
 }
 
-.post-form-fieldset {
+.form-fieldset {
     margin: 20px 10px;
     border: none;
     border-radius: 10px;
@@ -89,4 +89,8 @@ label{
 .button-div {
     display: flex;
     justify-content: center;
+}
+
+.cancel-button {
+    margin: 20px;
 }

@@ -87,13 +87,13 @@ export const PostForm = () => {
   };
 
   return (
-    <main className="post-form-parent">
+    <main className="form-parent">
       <form className="form-and-header">
         <div className="h1-div">
           <h1>New Post Form</h1>
         </div>
         <div className="form-container">
-          <fieldset className="post-form-fieldset">
+          <fieldset className="form-fieldset">
             <div className="form-field">
               <label>New Post:</label>
               <input
