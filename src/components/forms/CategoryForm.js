@@ -1,59 +1,64 @@
 import { useState } from "react";
 import { createCategory } from "../../services/categoryServices";
 import { useNavigate } from "react-router-dom";
+import "./forms.css";
 
 export const CategoryForm = () => {
   const [category, setCategory] = useState({
-    label: ""
-  })
+    label: "",
+  });
 
   let navigate = useNavigate();
 
   const updateCategory = (e) => {
-    const copy = {...category};
+    const copy = { ...category };
     copy[e.target.id] = e.target.value;
 
     setCategory(copy);
-  }
+  };
 
   const handleSave = (evt) => {
     evt.preventDefault();
 
     const newCategory = {
-      label: category.label
-    }
+      label: category.label,
+    };
     createCategory(newCategory).then(() => {
       navigate("/categories");
     });
-  }
-
+  };
 
   return (
-    <main className="category-form-parent">
-      <form>
-        <h1>New Category Form</h1>
-        <div>
-          <fieldset className="category-form-fieldset">
-            <div>
+    <main className="form-parent">
+      <form className="form-and-header">
+        <div className="h1-div">
+          <h1>New Category Form</h1>
+        </div>
+        <div className="form-container">
+          <fieldset className="form-fieldset">
+            <div className="form-field">
               <label>New Category:</label>
               <input
-              id='label'
-              onChange={updateCategory}
-              type="text"
-              placeholder="..."
-              value={category.label}
-              required
+                className="input-field"
+                id="label"
+                onChange={updateCategory}
+                type="text"
+                placeholder="Category Name"
+                value={category.label}
+                required
               />
             </div>
-            <div>
-              <button className="save-button" onClick={handleSave}>
-                submit
-              </button>
-            </div>
           </fieldset>
+          <div className="button-div">
+            <button className="cancel-button" onClick={handleSave}>
+              Submit Category
+            </button>
+            <button className="cancel-button" onClick={() => navigate(-1)}>
+              Cancel
+            </button>
+          </div>
         </div>
       </form>
     </main>
-  )
-}
-
+  );
+};

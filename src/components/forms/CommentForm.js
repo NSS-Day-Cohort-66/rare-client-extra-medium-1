@@ -32,28 +32,34 @@ export const CommentForm = () => {
   };
 
   return (
-    <main className="category-form-parent">
-      <form>
-        <h1>New Comment Form</h1>
-        <div>
-          <fieldset className="category-form-fieldset">
-            <div>
+    <main className="form-parent">
+      <form className="form-and-header">
+        <div className="h1-div">
+          <h1>New Comment Form</h1>
+        </div>
+        <div className="form-container">
+          <fieldset className="form-fieldset">
+            <div className="form-field">
               <label>New Comment:</label>
               <input
+                className="input-field"
                 id="content"
                 onChange={updateComment}
                 type="text"
-                placeholder="..."
+                placeholder="Comment here"
                 value={comment.content}
                 required
               />
             </div>
-            <div>
-              <button className="save-button" onClick={handleSave}>
+          </fieldset>
+            <div className="button-div">
+              <button className="cancel-button" onClick={handleSave}>
                 submit
               </button>
+              <button className="cancel-button" onClick={() => navigate(-1)}>
+              Cancel
+            </button>
             </div>
-          </fieldset>
         </div>
       </form>
     </main>
